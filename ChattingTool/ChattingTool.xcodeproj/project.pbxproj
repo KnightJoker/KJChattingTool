@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F521C8EDDA300198ECD /* AppDelegate.m */; };
 		22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F541C8EDDA300198ECD /* ChattingTool.xcdatamodeld */; };
-		22CC7F591C8EDDA300198ECD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F581C8EDDA300198ECD /* MasterViewController.m */; };
-		22CC7F5C1C8EDDA300198ECD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F5B1C8EDDA300198ECD /* DetailViewController.m */; };
-		22CC7F5F1C8EDDA300198ECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F5D1C8EDDA300198ECD /* Main.storyboard */; };
 		22CC7F611C8EDDA300198ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F601C8EDDA300198ECD /* Assets.xcassets */; };
-		22CC7F641C8EDDA300198ECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F621C8EDDA300198ECD /* LaunchScreen.storyboard */; };
 		22CC7F6F1C8EDDA300198ECD /* ChattingToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F6E1C8EDDA300198ECD /* ChattingToolTests.m */; };
 		22CC7F7A1C8EDDA300198ECD /* ChattingToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */; };
-		22CC7F881C8EE05E00198ECD /* Class in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F871C8EE05E00198ECD /* Class */; };
+		22CC7F951C8EF1BC00198ECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F941C8EF1BC00198ECD /* main.m */; };
+		22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F9D1C8EF9F200198ECD /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +38,7 @@
 		22CC7F511C8EDDA300198ECD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		22CC7F521C8EDDA300198ECD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		22CC7F551C8EDDA300198ECD /* ChattingTool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChattingTool.xcdatamodel; sourceTree = "<group>"; };
-		22CC7F571C8EDDA300198ECD /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		22CC7F581C8EDDA300198ECD /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		22CC7F5A1C8EDDA300198ECD /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		22CC7F5B1C8EDDA300198ECD /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		22CC7F5E1C8EDDA300198ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22CC7F601C8EDDA300198ECD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		22CC7F631C8EDDA300198ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22CC7F651C8EDDA300198ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CC7F6A1C8EDDA300198ECD /* ChattingToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChattingToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC7F6E1C8EDDA300198ECD /* ChattingToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChattingToolTests.m; sourceTree = "<group>"; };
@@ -55,7 +46,10 @@
 		22CC7F751C8EDDA300198ECD /* ChattingToolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChattingToolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChattingToolUITests.m; sourceTree = "<group>"; };
 		22CC7F7B1C8EDDA300198ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22CC7F871C8EE05E00198ECD /* Class */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Class; sourceTree = "<group>"; };
+		22CC7F941C8EF1BC00198ECD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22CC7F9C1C8EF9F200198ECD /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		22CC7F9D1C8EF9F200198ECD /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		22CC7FA01C8EFE1400198ECD /* PublicDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicDefine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +84,7 @@
 				22CC7F6D1C8EDDA300198ECD /* ChattingToolTests */,
 				22CC7F781C8EDDA300198ECD /* ChattingToolUITests */,
 				22CC7F4C1C8EDDA300198ECD /* Products */,
-				22CC7F871C8EE05E00198ECD /* Class */,
+				22CC7F911C8EEE6300198ECD /* Class */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,15 +103,10 @@
 			children = (
 				22CC7F511C8EDDA300198ECD /* AppDelegate.h */,
 				22CC7F521C8EDDA300198ECD /* AppDelegate.m */,
-				22CC7F571C8EDDA300198ECD /* MasterViewController.h */,
-				22CC7F581C8EDDA300198ECD /* MasterViewController.m */,
-				22CC7F5A1C8EDDA300198ECD /* DetailViewController.h */,
-				22CC7F5B1C8EDDA300198ECD /* DetailViewController.m */,
-				22CC7F5D1C8EDDA300198ECD /* Main.storyboard */,
 				22CC7F601C8EDDA300198ECD /* Assets.xcassets */,
-				22CC7F621C8EDDA300198ECD /* LaunchScreen.storyboard */,
 				22CC7F651C8EDDA300198ECD /* Info.plist */,
 				22CC7F541C8EDDA300198ECD /* ChattingTool.xcdatamodeld */,
+				22CC7F941C8EF1BC00198ECD /* main.m */,
 			);
 			path = ChattingTool;
 			sourceTree = "<group>";
@@ -138,6 +127,41 @@
 				22CC7F7B1C8EDDA300198ECD /* Info.plist */,
 			);
 			path = ChattingToolUITests;
+			sourceTree = "<group>";
+		};
+		22CC7F911C8EEE6300198ECD /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				22CC7F9F1C8EFD9000198ECD /* Common */,
+				22CC7F921C8EEE6300198ECD /* BaseViewController */,
+				22CC7F931C8EEE6300198ECD /* DataBase */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		22CC7F921C8EEE6300198ECD /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				22CC7F9C1C8EF9F200198ECD /* MainViewController.h */,
+				22CC7F9D1C8EF9F200198ECD /* MainViewController.m */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		22CC7F931C8EEE6300198ECD /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		22CC7F9F1C8EFD9000198ECD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				22CC7FA01C8EFE1400198ECD /* PublicDefine.h */,
+			);
+			name = Common;
+			path = DataBase/Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,10 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CC7F641C8EDDA300198ECD /* LaunchScreen.storyboard in Resources */,
 				22CC7F611C8EDDA300198ECD /* Assets.xcassets in Resources */,
-				22CC7F5F1C8EDDA300198ECD /* Main.storyboard in Resources */,
-				22CC7F881C8EE05E00198ECD /* Class in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,10 +292,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CC7F5C1C8EDDA300198ECD /* DetailViewController.m in Sources */,
-				22CC7F591C8EDDA300198ECD /* MasterViewController.m in Sources */,
 				22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */,
+				22CC7F951C8EF1BC00198ECD /* main.m in Sources */,
 				22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */,
+				22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,25 +329,6 @@
 			targetProxy = 22CC7F761C8EDDA300198ECD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		22CC7F5D1C8EDDA300198ECD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22CC7F5E1C8EDDA300198ECD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		22CC7F621C8EDDA300198ECD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22CC7F631C8EDDA300198ECD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		22CC7F7C1C8EDDA300198ECD /* Debug */ = {
@@ -500,6 +502,7 @@
 				22CC7F801C8EDDA300198ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22CC7F811C8EDDA300198ECD /* Build configuration list for PBXNativeTarget "ChattingToolTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +511,7 @@
 				22CC7F831C8EDDA300198ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22CC7F841C8EDDA300198ECD /* Build configuration list for PBXNativeTarget "ChattingToolUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +520,7 @@
 				22CC7F861C8EDDA300198ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
