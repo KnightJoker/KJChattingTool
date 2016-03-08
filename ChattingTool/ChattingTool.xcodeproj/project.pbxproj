@@ -18,6 +18,7 @@
 		22CC7F6F1C8EDDA300198ECD /* ChattingToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F6E1C8EDDA300198ECD /* ChattingToolTests.m */; };
 		22CC7F7A1C8EDDA300198ECD /* ChattingToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */; };
 		22CC7F881C8EE05E00198ECD /* Class in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F871C8EE05E00198ECD /* Class */; };
+		22CC7F8B1C8EEADC00198ECD /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F8A1C8EEADC00198ECD /* test.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChattingToolUITests.m; sourceTree = "<group>"; };
 		22CC7F7B1C8EDDA300198ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CC7F871C8EE05E00198ECD /* Class */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Class; sourceTree = "<group>"; };
+		22CC7F891C8EEADC00198ECD /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
+		22CC7F8A1C8EEADC00198ECD /* test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = test.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 				22CC7F651C8EDDA300198ECD /* Info.plist */,
 				22CC7F541C8EDDA300198ECD /* ChattingTool.xcdatamodeld */,
 				22CC7F4E1C8EDDA300198ECD /* Supporting Files */,
+				22CC7F891C8EEADC00198ECD /* test.h */,
+				22CC7F8A1C8EEADC00198ECD /* test.m */,
 			);
 			path = ChattingTool;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */,
 				22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */,
 				22CC7F501C8EDDA300198ECD /* main.m in Sources */,
+				22CC7F8B1C8EEADC00198ECD /* test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
