@@ -8,11 +8,12 @@
 
 #import "MainViewController.h"
 #import "PublicDefine.h"
+#import "ChattingViewController.h"
 
 @implementation MainViewController
 
 
-#pragma mark - life circle
+#pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,8 +29,40 @@
 - (void)initView {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIButton* messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_HEIGHT - 100, 30, 30, 30)];
+//    NSLog(@"%f",SCREEN_HEIGHT);
+//    NSLog(@"%f",SCREEN_WIDTH);
+    
+    UIButton* messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 50, 50)];
+//    messageBtn.backgroundColor = [UIColor yellowColor];
+//    [messageBtn setTitle:@"消息" forState:UIControlStateNormal];
+//    [messageBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [messageBtn setImage:[UIImage imageNamed:@"shortcut_multichat.png"] forState:UIControlStateNormal];
+    
+    
+    UIButton* contactBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 240, SCREEN_HEIGHT - 80, 50, 50)];
+//    contactBtn.backgroundColor = [UIColor yellowColor];
+//    [contactBtn setTitle:@"联系" forState:UIControlStateNormal];
+//    [contactBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [contactBtn setImage:[UIImage imageNamed:@"shortcut_addFri.png"] forState:UIControlStateNormal];
+    
+    
+    UIButton* dynamicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 80, 50, 50)];
+    dynamicBtn.backgroundColor = [UIColor yellowColor];
+    [dynamicBtn setTitle:@"动态" forState:UIControlStateNormal];
+    [dynamicBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     
     [self.view addSubview:messageBtn];
+    [self.view addSubview:contactBtn];
+    [self.view addSubview:dynamicBtn];
+    
+    [messageBtn addTarget:self action:@selector(message:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (void)message:(id)sender{
+    NSLog(@"消息成功");
+    ChattingViewController* vc = [[ChattingViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 @end

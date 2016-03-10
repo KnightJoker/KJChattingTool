@@ -21,13 +21,13 @@
     // Override point for customization after application launch.
 
     //windows窗口初始化
-    self.window = [ [UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     //窗口背景色
     self.window.backgroundColor = [UIColor whiteColor];
     
     //设置navigation导航器
-    MainViewController* vc = [[	MainViewController alloc]init];
+    MainViewController* vc = [[MainViewController alloc] init];
     UINavigationController* navi =[[UINavigationController alloc] initWithRootViewController:vc];
     [vc.navigationController setNavigationBarHidden:YES];
     self.window.rootViewController = navi;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220B9F7B1C9176B1006F6764 /* shortcut_addFri@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 220B9F791C9176B1006F6764 /* shortcut_addFri@3x.png */; };
+		220B9F7C1C9176B1006F6764 /* shortcut_multichat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 220B9F7A1C9176B1006F6764 /* shortcut_multichat@3x.png */; };
+		223B8C421C8FC25B004D6E3A /* ChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 223B8C411C8FC25B004D6E3A /* ChattingViewController.m */; };
 		22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F521C8EDDA300198ECD /* AppDelegate.m */; };
 		22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F541C8EDDA300198ECD /* ChattingTool.xcdatamodeld */; };
 		22CC7F611C8EDDA300198ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F601C8EDDA300198ECD /* Assets.xcassets */; };
@@ -34,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220B9F791C9176B1006F6764 /* shortcut_addFri@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut_addFri@3x.png"; sourceTree = "<group>"; };
+		220B9F7A1C9176B1006F6764 /* shortcut_multichat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut_multichat@3x.png"; sourceTree = "<group>"; };
+		223B8C401C8FC25B004D6E3A /* ChattingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattingViewController.h; sourceTree = "<group>"; };
+		223B8C411C8FC25B004D6E3A /* ChattingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattingViewController.m; sourceTree = "<group>"; };
 		22CC7F4B1C8EDDA300198ECD /* ChattingTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChattingTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC7F511C8EDDA300198ECD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		22CC7F521C8EDDA300198ECD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,9 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220B9F781C9175DA006F6764 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				220B9F791C9176B1006F6764 /* shortcut_addFri@3x.png */,
+				220B9F7A1C9176B1006F6764 /* shortcut_multichat@3x.png */,
+			);
+			name = Resource;
+			path = Class/Resource;
+			sourceTree = "<group>";
+		};
 		22CC7F421C8EDDA300198ECD = {
 			isa = PBXGroup;
 			children = (
+				220B9F781C9175DA006F6764 /* Resource */,
 				22CC7F4D1C8EDDA300198ECD /* ChattingTool */,
 				22CC7F6D1C8EDDA300198ECD /* ChattingToolTests */,
 				22CC7F781C8EDDA300198ECD /* ChattingToolUITests */,
@@ -144,6 +162,8 @@
 			children = (
 				22CC7F9C1C8EF9F200198ECD /* MainViewController.h */,
 				22CC7F9D1C8EF9F200198ECD /* MainViewController.m */,
+				223B8C401C8FC25B004D6E3A /* ChattingViewController.h */,
+				223B8C411C8FC25B004D6E3A /* ChattingViewController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -267,7 +287,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220B9F7C1C9176B1006F6764 /* shortcut_multichat@3x.png in Resources */,
 				22CC7F611C8EDDA300198ECD /* Assets.xcassets in Resources */,
+				220B9F7B1C9176B1006F6764 /* shortcut_addFri@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +317,7 @@
 				22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */,
 				22CC7F951C8EF1BC00198ECD /* main.m in Sources */,
 				22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */,
+				223B8C421C8FC25B004D6E3A /* ChattingViewController.m in Sources */,
 				22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
