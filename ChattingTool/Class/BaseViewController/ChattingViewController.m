@@ -9,50 +9,102 @@
 #import "ChattingViewController.h"
 #import "PublicDefine.h"
 
+@interface ChattingViewController ()
+
+@property (strong, nonatomic) UITextField* messageTextView;
+@property (strong, nonatomic) UILabel* dialogLable;
+
+@end
+
 @implementation ChattingViewController
 
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initView];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [super viewDidAppear:animated];
 }
 
-- (void)initView{
-    UITextField* message = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 350, 40)];
-    message.backgroundColor = [UIColor yellowColor];
-    message.keyboardType = UIKeyboardTypeDefault;
-    message.returnKeyType = UIReturnKeySend;
+- (void)viewWillDisappear:(BOOL)animated{
     
-    [self.view addSubview:message];
-    
-    message.delegate = self;
-    [self textFieldDidBeginEditing:message];
-    [self textFieldDidEndEditing:message];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification
+        object:nil];
+    [super viewWillDisappear:animated];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
+- (void)initView{
+    
+    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 350, 40)];
+    _messageTextView.backgroundColor = [UIColor yellowColor];
+    _messageTextView.keyboardType = UIKeyboardTypeDefault;
+    _messageTextView.returnKeyType = UIReturnKeySend;
+    _messageTextView.delegate = self;
+    
+    [self.view addSubview:_messageTextView];
+    
+}
+- (void)handleKeyboardDidShow:(NSNotification *)notification {
+    
+    NSDictionary *keyboardDic = notification.userInfo;
+    CGFloat keyboardHeight = CGRectGetHeight([[keyboardDic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]);
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect textViewFrame = _messageTextView.frame;
+        if (textViewFrame.origin.y > (SCREEN_HEIGHT - 80 - keyboardHeight)) {
+            textViewFrame.origin.y -= keyboardHeight;
+             _messageTextView.frame = textViewFrame;
+        }
+        
+    }];
+    
+    NSLog(@"1111");
+}
+
+- (void)handleKeyboardWillHide:(NSNotification *)notification {
+
+    NSDictionary *keyboardDic = notification.userInfo;
+    CGFloat keyboardHeight = CGRectGetHeight([[keyboardDic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]);
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect textViewFrame = _messageTextView.frame;
+        if (textViewFrame.origin.y <= (SCREEN_HEIGHT - 80 - keyboardHeight)) {
+            textViewFrame.origin.y += keyboardHeight;
+            _messageTextView.frame = textViewFrame;
+        }
+    }];
+}
+
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [_messageTextView resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+
     NSLog(@"开始编辑");
-    CGFloat offset = self.view.frame.size.height - (textField.frame.origin.y + textField.frame.size.height + 216 + 70);
-    if (offset <= 0) {
-        [UIView animateWithDuration:0.3 animations:^{
-            CGRect frame = self.view.frame;
-            frame.origin.y = offset;
-            self.view.frame = frame;
-        }];
-    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
 
     NSLog(@"结束编辑");
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect frame = self.view.frame;
-        frame.origin.y = 0.0;
-        self.view.frame = frame;
-    }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSLog(@"%@",_messageTextView.text);
+    _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, 80, _messageTextView.text.length + 50, 40)];
+    _dialogLable.backgroundColor = [UIColor yellowColor];
+    _dialogLable.text = _messageTextView.text;
+    [_messageTextView setText:@""];
+    [self.view addSubview:_dialogLable];
+    return YES;
 }
 @end
