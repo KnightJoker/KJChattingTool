@@ -9,6 +9,7 @@
 #import "ChattingViewController.h"
 #import "PublicDefine.h"
 
+NSInteger temp = 80;
 @interface ChattingViewController ()
 
 @property (strong, nonatomic) UITextField* messageTextView;
@@ -100,11 +101,16 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSLog(@"%@",_messageTextView.text);
-    _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, 80, _messageTextView.text.length + 50, 40)];
-    _dialogLable.backgroundColor = [UIColor yellowColor];
-    _dialogLable.text = _messageTextView.text;
-    [_messageTextView setText:@""];
-    [self.view addSubview:_dialogLable];
+//    NSInteger temp = 80;
+    if ((temp >= 80) && (temp < (_messageTextView.frame.origin.y - 260))) {
+        _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, temp, _messageTextView.text.length + 50, 40)];
+        _dialogLable.backgroundColor = [UIColor yellowColor];
+        _dialogLable.text = _messageTextView.text;
+        [_messageTextView setText:@""];
+        [self.view addSubview:_dialogLable];
+        temp += 60;
+    }
+    
     return YES;
 }
 @end
