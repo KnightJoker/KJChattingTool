@@ -14,6 +14,7 @@ NSInteger temp = 80;
 
 @property (strong, nonatomic) UITextField* messageTextView;
 @property (strong, nonatomic) UILabel* dialogLable;
+@property (strong, nonatomic) UITableView* tableView;
 
 @end
 
@@ -51,21 +52,27 @@ NSInteger temp = 80;
     _messageTextView.returnKeyType = UIReturnKeySend;
     _messageTextView.delegate = self;
     
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 88) style:UITableViewStylePlain];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.allowsSelection = NO;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    
+    [self.view addSubview:_tableView];
+    
     [self.view addSubview:_messageTextView];
     
 }
+
+#pragma mark - 键盘弹出或隐藏
 - (void)handleKeyboardDidShow:(NSNotification *)notification {
+
+    CGRect keyBoardRect=[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat deltaY=keyBoardRect.size.height;
     
-    NSDictionary *keyboardDic = notification.userInfo;
-    CGFloat keyboardHeight = CGRectGetHeight([[keyboardDic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]);
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect textViewFrame = _messageTextView.frame;
-        if (textViewFrame.origin.y > (SCREEN_HEIGHT - 80 - keyboardHeight)) {
-            textViewFrame.origin.y -= keyboardHeight;
-             _messageTextView.frame = textViewFrame;
-        }
+    [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
         
+        self.view.transform = CGAffineTransformMakeTranslation(0, -deltaY);
     }];
     
     NSLog(@"1111");
@@ -73,15 +80,8 @@ NSInteger temp = 80;
 
 - (void)handleKeyboardWillHide:(NSNotification *)notification {
 
-    NSDictionary *keyboardDic = notification.userInfo;
-    CGFloat keyboardHeight = CGRectGetHeight([[keyboardDic objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]);
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect textViewFrame = _messageTextView.frame;
-        if (textViewFrame.origin.y <= (SCREEN_HEIGHT - 80 - keyboardHeight)) {
-            textViewFrame.origin.y += keyboardHeight;
-            _messageTextView.frame = textViewFrame;
-        }
+    [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
     }];
 }
 
@@ -89,19 +89,42 @@ NSInteger temp = 80;
     [_messageTextView resignFirstResponder];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+#pragma mark - UITableViewDataSource方法
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 0;
+}
 
+#pragma mark - UITableViewDelegate方法
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 0;
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    
+    [self.view endEditing:YES];
+}
+
+ #pragma mark - UITextFieldDelegate方法
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
     NSLog(@"开始编辑");
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-
+    
     NSLog(@"结束编辑");
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSLog(@"%@",_messageTextView.text);
-//    NSInteger temp = 80;
+    //    NSInteger temp = 80;
     if ((temp >= 80) && (temp < (_messageTextView.frame.origin.y - 260))) {
         _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, temp, _messageTextView.text.length + 50, 40)];
         _dialogLable.backgroundColor = [UIColor yellowColor];

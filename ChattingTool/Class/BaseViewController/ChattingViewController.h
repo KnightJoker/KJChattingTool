@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChattingViewController : UIViewController<UITextFieldDelegate>
+@interface ChattingViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @end

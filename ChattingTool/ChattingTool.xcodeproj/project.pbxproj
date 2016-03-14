@@ -84,6 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22075D1E1C952BAB0032FA44 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		22075D1F1C952C9C0032FA44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		220B9F781C9175DA006F6764 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +164,8 @@
 		22CC7F911C8EEE6300198ECD /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				22075D1F1C952C9C0032FA44 /* View */,
+				22075D1E1C952BAB0032FA44 /* Model */,
 				22CC7F9F1C8EFD9000198ECD /* Common */,
 				22CC7F921C8EEE6300198ECD /* BaseViewController */,
 				22CC7F931C8EEE6300198ECD /* DataBase */,
