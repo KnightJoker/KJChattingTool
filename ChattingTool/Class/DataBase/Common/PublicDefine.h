@@ -12,4 +12,6 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+#define TEXTFONT 14
+
 #endif /* PublicDefine_h */

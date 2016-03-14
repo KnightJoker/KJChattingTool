@@ -17,6 +17,9 @@
 		22CC7F7A1C8EDDA300198ECD /* ChattingToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */; };
 		22CC7F951C8EF1BC00198ECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F941C8EF1BC00198ECD /* main.m */; };
 		22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F9D1C8EF9F200198ECD /* MainViewController.m */; };
+		22FA86C41C96704C000AD04B /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FA86C31C96704C000AD04B /* MessageCell.m */; };
+		22FA86C71C9679C5000AD04B /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FA86C61C9679C5000AD04B /* Message.m */; };
+		22FA86CA1C9679E2000AD04B /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FA86C91C9679E2000AD04B /* MessageFrame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,12 @@
 		22CC7F9C1C8EF9F200198ECD /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		22CC7F9D1C8EF9F200198ECD /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		22CC7FA01C8EFE1400198ECD /* PublicDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicDefine.h; sourceTree = "<group>"; };
+		22FA86C21C96704C000AD04B /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		22FA86C31C96704C000AD04B /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		22FA86C51C9679C5000AD04B /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		22FA86C61C9679C5000AD04B /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		22FA86C81C9679E2000AD04B /* MessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
+		22FA86C91C9679E2000AD04B /* MessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +96,10 @@
 		22075D1E1C952BAB0032FA44 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22FA86C51C9679C5000AD04B /* Message.h */,
+				22FA86C61C9679C5000AD04B /* Message.m */,
+				22FA86C81C9679E2000AD04B /* MessageFrame.h */,
+				22FA86C91C9679E2000AD04B /* MessageFrame.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -94,6 +107,8 @@
 		22075D1F1C952C9C0032FA44 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22FA86C21C96704C000AD04B /* MessageCell.h */,
+				22FA86C31C96704C000AD04B /* MessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,8 +346,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */,
+				22FA86CA1C9679E2000AD04B /* MessageFrame.m in Sources */,
 				22CC7F951C8EF1BC00198ECD /* main.m in Sources */,
 				22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */,
+				22FA86C71C9679C5000AD04B /* Message.m in Sources */,
+				22FA86C41C96704C000AD04B /* MessageCell.m in Sources */,
 				223B8C421C8FC25B004D6E3A /* ChattingViewController.m in Sources */,
 				22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */,
 			);
