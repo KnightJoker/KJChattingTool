@@ -19,6 +19,7 @@ typedef enum {
 @property (nonatomic,copy) NSString *time;
 @property (nonatomic,assign) MessageType type;
 @property (nonatomic,assign,getter = isHiddemTime) BOOL hiddemTime;
+
 - (instancetype)initWithDic:(NSDictionary *)dic;
 + (instancetype)messageWithDic:(NSDictionary *)dic;
 + (NSMutableArray *)messageList;

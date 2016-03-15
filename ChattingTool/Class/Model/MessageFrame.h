@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@class Message;
 
 @interface MessageFrame : NSObject
 
+@property (nonatomic,assign) CGFloat rowHeight;
+@property (nonatomic,assign) CGRect timeFrame;
+@property (nonatomic,assign) CGRect iconFrame;
+@property (nonatomic,assign) CGRect textFrame;
+@property (nonatomic,strong) Message *message;
+
++ (NSMutableArray *)messageFrameList;
 @end
