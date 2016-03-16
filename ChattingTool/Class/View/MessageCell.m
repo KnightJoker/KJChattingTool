@@ -8,6 +8,8 @@
 
 #import "MessageCell.h"
 #import "PublicDefine.h"
+#import "Message.h"
+#import "MessageFrame.h"
 
 @interface MessageCell ()
 
@@ -66,4 +68,33 @@
         }
     return self;
 }
+
+- (void)setMessageFrame:(MessageFrame *)messageFrame {
+    _messageFrame = messageFrame;
+    [self setSubviewsContent];
+    [self setSubviewsFrame];
+}
+- (void)setSubviewsContent {
+    Message *msg = self.messageFrame.message;
+    //给时间子控件赋值
+    self.timeLabel.text = msg.time;
+    //给头像子控件赋值
+    self.iconView.image = [UIImage imageNamed:msg.type == MessageTypeSelf ? @"me" :@"other"];
+    //给内容子控件赋值
+    [self.textBtn setTitle:msg.text forState:UIControlStateNormal];
+    //设置内容子控件的背景图片
+    if (msg.type == MessageTypeSelf) {
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"图片"] forState:UIControlStateNormal];
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"还没有"] forState:UIControlStateHighlighted];
+    }else {
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"找到"] forState:UIControlStateNormal];
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"QAQ"] forState:UIControlStateHighlighted];
+    }
+}
+- (void)setSubviewsFrame {
+    self.timeLabel.frame = self.messageFrame.timeFrame;
+    self.iconView.frame = self.messageFrame.iconFrame;
+    self.textBtn.frame = self.messageFrame.textFrame;
+}
+
 @end

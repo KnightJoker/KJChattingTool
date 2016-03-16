@@ -20,4 +20,5 @@
 @property (nonatomic,strong) Message *message;
 
 + (NSMutableArray *)messageFrameList;
+
 @end

@@ -8,13 +8,17 @@
 
 #import "ChattingViewController.h"
 #import "PublicDefine.h"
+#import "MessageFrame.h"
+#import "Message.h"
+#import "MessageCell.h"
 
-NSInteger temp = 80;
 @interface ChattingViewController ()
 
 @property (strong, nonatomic) UITextField* messageTextView;
 @property (strong, nonatomic) UILabel* dialogLable;
 @property (strong, nonatomic) UITableView* tableView;
+
+@property (nonatomic,strong) NSMutableArray *messageFrame;
 
 @end
 
@@ -92,17 +96,20 @@ NSInteger temp = 80;
 #pragma mark - UITableViewDataSource方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.messageFrame.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0;
+    MessageCell *cell = [MessageCell cellWithTableView:tableView];
+    cell.messageFrame = self.messageFrame[indexPath.row];
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate方法
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0;
+    MessageFrame *frame = self.messageFrame[indexPath.row];
+    return frame.rowHeight;
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -123,17 +130,41 @@ NSInteger temp = 80;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    NSLog(@"%@",_messageTextView.text);
-    //    NSInteger temp = 80;
-    if ((temp >= 80) && (temp < (_messageTextView.frame.origin.y - 260))) {
-        _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, temp, _messageTextView.text.length + 50, 40)];
-        _dialogLable.backgroundColor = [UIColor yellowColor];
-        _dialogLable.text = _messageTextView.text;
-        [_messageTextView setText:@""];
-        [self.view addSubview:_dialogLable];
-        temp += 60;
+//    NSLog(@"%@",_messageTextView.text);
+//    //    NSInteger temp = 80;
+//    if ((temp >= 80) && (temp < (_messageTextView.frame.origin.y - 260))) {
+//        _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, temp, _messageTextView.text.length + 50, 40)];
+//        _dialogLable.backgroundColor = [UIColor yellowColor];
+//        _dialogLable.text = _messageTextView.text;
+//        [_messageTextView setText:@""];
+//        [self.view addSubview:_dialogLable];
+//        temp += 60;
+//    }
+//    
+//    return YES;
+    Message *msg = [[Message alloc] init];
+    msg.type = MessageTypeSelf;
+    msg.text = textField.text;
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"HH:mm";
+    msg.time = [formatter stringFromDate:date];
+    
+    //判断前一条信息和当前信息的时间是否相同
+    Message *preMessage = (Message *)[[self.messageFrame lastObject] message];
+    if ([preMessage.time isEqualToString:msg.time]) {
+        msg.hiddemTime = YES;
     }
     
+    MessageFrame *frame = [[MessageFrame alloc] init];
+    frame.message = msg;
+    [self.messageFrame addObject:frame];
+    
+    //重新加载数据
+    [self.tableView reloadData];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageFrame.count - 1 inSection:0];
+    //滚动显示最后一条数据
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     return YES;
 }
 @end

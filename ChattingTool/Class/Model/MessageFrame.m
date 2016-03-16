@@ -7,6 +7,8 @@
 //
 
 #import "MessageFrame.h"
+#import "Message.h"
+#import "PublicDefine.h"
 
 @implementation MessageFrame
 
@@ -42,7 +44,8 @@
     
     //内容frame
     //取得内容的大小
-    CGSize textSize = [message.text setTextSize:CGSizeMake(200, MAXFLOAT) andFontSize:TEXTFONT];
+//    CGSize textSize = [message.text setTextSize:CGSizeMake(200, MAXFLOAT) andFontSize:TEXTFONT];
+    CGSize textSize = CGSizeMake(200, MAXFLOAT);
     //取得内容按钮的大小
     CGSize btnSize = CGSizeMake(textSize.width + 40, textSize.height + 40);
     CGFloat textX;
