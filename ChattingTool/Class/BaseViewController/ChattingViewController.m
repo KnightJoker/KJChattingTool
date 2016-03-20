@@ -15,7 +15,7 @@
 @interface ChattingViewController ()
 
 @property (strong, nonatomic) UITextField* messageTextView;
-@property (strong, nonatomic) UILabel* dialogLable;
+//@property (strong, nonatomic) UILabel* dialogLable;
 @property (strong, nonatomic) UITableView* tableView;
 
 @property (nonatomic,strong) NSMutableArray *messageFrame;
@@ -50,21 +50,37 @@
 
 - (void)initView{
     
-    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 350, 40)];
+    [self initData];
+    [self initTableView];
+    [self initTextView];
+    
+}
+
+- (void)initData {
+    _messageFrame = [NSMutableArray array];
+}
+
+- (void)initTextView{
+    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 60, 350, 40)];
     _messageTextView.backgroundColor = [UIColor yellowColor];
     _messageTextView.keyboardType = UIKeyboardTypeDefault;
     _messageTextView.returnKeyType = UIReturnKeySend;
     _messageTextView.delegate = self;
     
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 88) style:UITableViewStylePlain];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.allowsSelection = NO;
+    [self.view addSubview:_messageTextView];
+}
+- (void)initTableView{
+    
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 88) style:UITableViewStylePlain];
+    
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.allowsSelection = NO;
+    
     _tableView.dataSource = self;
     _tableView.delegate = self;
     
     [self.view addSubview:_tableView];
-    
-    [self.view addSubview:_messageTextView];
     
 }
 
@@ -94,10 +110,16 @@
 }
 
 #pragma mark - UITableViewDataSource方法
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return self.messageFrame.count;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.messageFrame.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MessageCell *cell = [MessageCell cellWithTableView:tableView];
@@ -131,7 +153,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 //    NSLog(@"%@",_messageTextView.text);
-//    //    NSInteger temp = 80;
+//    //    NSInteger temp = 80;
 //    if ((temp >= 80) && (temp < (_messageTextView.frame.origin.y - 260))) {
 //        _dialogLable = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - _messageTextView.text.length - 70, temp, _messageTextView.text.length + 50, 40)];
 //        _dialogLable.backgroundColor = [UIColor yellowColor];

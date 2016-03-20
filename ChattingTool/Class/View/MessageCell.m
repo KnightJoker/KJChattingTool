@@ -71,6 +71,8 @@
 
 - (void)setMessageFrame:(MessageFrame *)messageFrame {
     _messageFrame = messageFrame;
+    //TODO 大小和位置计算
+    
     [self setSubviewsContent];
     [self setSubviewsFrame];
 }
@@ -78,13 +80,15 @@
     Message *msg = self.messageFrame.message;
     //给时间子控件赋值
     self.timeLabel.text = msg.time;
+    
     //给头像子控件赋值
-    self.iconView.image = [UIImage imageNamed:msg.type == MessageTypeSelf ? @"me" :@"other"];
+    self.iconView.image = [UIImage imageNamed:msg.type == MessageTypeSelf ? @"icon_me.jpg" :@"other"];
     //给内容子控件赋值
     [self.textBtn setTitle:msg.text forState:UIControlStateNormal];
     //设置内容子控件的背景图片
     if (msg.type == MessageTypeSelf) {
         [self.textBtn setBackgroundImage:[UIImage imageNamed:@"图片"] forState:UIControlStateNormal];
+//        _textBtn.backgroundColor = [UIColor yellowColor];
         [self.textBtn setBackgroundImage:[UIImage imageNamed:@"还没有"] forState:UIControlStateHighlighted];
     }else {
         [self.textBtn setBackgroundImage:[UIImage imageNamed:@"找到"] forState:UIControlStateNormal];

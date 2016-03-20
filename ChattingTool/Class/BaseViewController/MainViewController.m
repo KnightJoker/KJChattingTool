@@ -33,23 +33,18 @@
 //    NSLog(@"%f",SCREEN_WIDTH);
     
     UIButton* messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 50, 50)];
-//    messageBtn.backgroundColor = [UIColor yellowColor];
-//    [messageBtn setTitle:@"消息" forState:UIControlStateNormal];
-//    [messageBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
     [messageBtn setImage:[UIImage imageNamed:@"shortcut_multichat.png"] forState:UIControlStateNormal];
     
     
     UIButton* contactBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 240, SCREEN_HEIGHT - 80, 50, 50)];
-//    contactBtn.backgroundColor = [UIColor yellowColor];
-//    [contactBtn setTitle:@"联系" forState:UIControlStateNormal];
-//    [contactBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
     [contactBtn setImage:[UIImage imageNamed:@"shortcut_addFri.png"] forState:UIControlStateNormal];
     
     
     UIButton* dynamicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 80, 50, 50)];
-    dynamicBtn.backgroundColor = [UIColor yellowColor];
-    [dynamicBtn setTitle:@"动态" forState:UIControlStateNormal];
-    [dynamicBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+
+    [dynamicBtn setImage:[UIImage imageNamed:@"qzone_app_icon.png"] forState:UIControlStateNormal];
     
     [self.view addSubview:messageBtn];
     [self.view addSubview:contactBtn];
