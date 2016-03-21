@@ -105,7 +105,7 @@
     }];
 }
 
--(void)keyboardHide:(UITapGestureRecognizer*)tap{
+- (void)keyboardHide:(UITapGestureRecognizer*)tap{
     [_messageTextView resignFirstResponder];
 }
 

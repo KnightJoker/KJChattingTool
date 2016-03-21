@@ -44,7 +44,7 @@
     
     UIButton* dynamicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 80, 50, 50)];
 
-    [dynamicBtn setImage:[UIImage imageNamed:@"qzone_app_icon.png"] forState:UIControlStateNormal];
+    [dynamicBtn setImage:[UIImage imageNamed:@"favorite_classify_qzone@2x.png"] forState:UIControlStateNormal];
     
     [self.view addSubview:messageBtn];
     [self.view addSubview:contactBtn];

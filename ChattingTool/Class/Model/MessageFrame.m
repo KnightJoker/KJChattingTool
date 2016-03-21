@@ -9,6 +9,7 @@
 #import "MessageFrame.h"
 #import "Message.h"
 #import "PublicDefine.h"
+#import "NSString+Ext.h"
 
 @implementation MessageFrame
 
@@ -26,7 +27,7 @@
     
     //时间frame
     if (!message.hiddemTime) {//如果时间不相同时，才设置时间的frame
-        _timeFrame = CGRectMake(0, 0, screenW, 40);
+        _timeFrame = CGRectMake(0, 10, screenW, 40);
     }
     
     //头像frame
@@ -44,8 +45,8 @@
     
     //内容frame
     //取得内容的大小
-//    CGSize textSize = [message.text setTextSize:CGSizeMake(200, MAXFLOAT) andFontSize:TEXTFONT];
-    CGSize textSize = CGSizeMake(200, MAXFLOAT);
+    CGSize textSize = [message.text setTextSize:CGSizeMake(200, MAXFLOAT) andFontSize:TEXTFONT];
+//    CGSize textSize = CGSizeMake(200, MAXFLOAT);
     //取得内容按钮的大小
     CGSize btnSize = CGSizeMake(textSize.width + 40, textSize.height + 40);
     CGFloat textX;

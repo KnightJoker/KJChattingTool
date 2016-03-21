@@ -10,6 +10,7 @@
 #import "PublicDefine.h"
 #import "Message.h"
 #import "MessageFrame.h"
+#import "UIImage+Ext.h"
 
 @interface MessageCell ()
 
@@ -82,17 +83,17 @@
     self.timeLabel.text = msg.time;
     
     //给头像子控件赋值
-    self.iconView.image = [UIImage imageNamed:msg.type == MessageTypeSelf ? @"icon_me.jpg" :@"other"];
+    self.iconView.image = [UIImage imageNamed:msg.type == MessageTypeSelf ? @"icon_me.jpg" :@"icon_me.jpg"];
     //给内容子控件赋值
     [self.textBtn setTitle:msg.text forState:UIControlStateNormal];
     //设置内容子控件的背景图片
     if (msg.type == MessageTypeSelf) {
-        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"图片"] forState:UIControlStateNormal];
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"picture"] forState:UIControlStateNormal];
 //        _textBtn.backgroundColor = [UIColor yellowColor];
-        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"还没有"] forState:UIControlStateHighlighted];
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"picture"] forState:UIControlStateHighlighted];
     }else {
-        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"找到"] forState:UIControlStateNormal];
-        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"QAQ"] forState:UIControlStateHighlighted];
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"picture"] forState:UIControlStateNormal];
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"picture"] forState:UIControlStateHighlighted];
     }
 }
 - (void)setSubviewsFrame {
