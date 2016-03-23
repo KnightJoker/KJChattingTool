@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "TestViewController.h"
-
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -30,9 +28,6 @@
     //设置navigation导航器
     MainViewController* vc = [[MainViewController alloc] init];
     UINavigationController* navi =[[UINavigationController alloc] initWithRootViewController:vc];
-    
-//    TestViewController* vc = [[TestViewController alloc] init];
-//    UINavigationController* navi =[[UINavigationController alloc] initWithRootViewController:vc];
     
     [vc.navigationController setNavigationBarHidden:YES];
     self.window.rootViewController = navi;

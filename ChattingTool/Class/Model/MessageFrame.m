@@ -10,6 +10,7 @@
 #import "Message.h"
 #import "PublicDefine.h"
 #import "NSString+Ext.h"
+#import "PublicDefine.h"
 
 @implementation MessageFrame
 
@@ -19,15 +20,15 @@
 - (void)setMessage:(Message *)message {
     _message = message;
     
-    //屏幕宽度
-    UIScreen *screen = [UIScreen mainScreen];
-    CGFloat screenW = screen.bounds.size.width;
+//    //屏幕宽度
+//    UIScreen *screen = [UIScreen mainScreen];
+//    CGFloat screenW = screen.bounds.size.width;
     //间距
     CGFloat margin = 10;
     
     //时间frame
     if (!message.hiddemTime) {//如果时间不相同时，才设置时间的frame
-        _timeFrame = CGRectMake(0, 10, screenW, 40);
+        _timeFrame = CGRectMake(0, 10, SCREEN_WIDTH, 40);
     }
     
     //头像frame
@@ -37,7 +38,7 @@
     CGFloat iconY = CGRectGetMaxY(_timeFrame);
     if (message.type == MessageTypeSelf) {
         //自己的头像在右边，所以是屏幕的宽度减去间距，再减去头像的宽度
-        iconX = screenW - margin - iconW;
+        iconX = SCREEN_WIDTH - margin - iconW;
     }else {
         iconX = margin;
     }
