@@ -70,15 +70,15 @@
     return self;
 }
 
-- (void)setMessageFrame:(MessageFrame *)messageFrame {
-    _messageFrame = messageFrame;
+- (void)setMessageList:(MessageFrame *)messageList{
+    _messageList = messageList;
     //TODO 大小和位置计算
-    
     [self setSubviewsContent];
     [self setSubviewsFrame];
 }
+
 - (void)setSubviewsContent {
-    Message *msg = self.messageFrame.message;
+    Message *msg = self.messageList.message;
     //给时间子控件赋值
     self.timeLabel.text = msg.time;
     
@@ -97,9 +97,9 @@
     }
 }
 - (void)setSubviewsFrame {
-    self.timeLabel.frame = self.messageFrame.timeFrame;
-    self.iconView.frame = self.messageFrame.iconFrame;
-    self.textBtn.frame = self.messageFrame.textFrame;
+    self.timeLabel.frame = self.messageList.timeFrame;
+    self.iconView.frame = self.messageList.iconFrame;
+    self.textBtn.frame = self.messageList.textFrame;
 }
 
 @end
