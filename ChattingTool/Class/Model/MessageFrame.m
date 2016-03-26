@@ -15,7 +15,7 @@
 @implementation MessageFrame
 
 /*
- 重写set方法，设置fram
+ 重写set方法，设置frame
  */
 - (void)setMessage:(Message *)message {
     _message = message;

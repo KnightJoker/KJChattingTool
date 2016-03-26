@@ -112,15 +112,16 @@
 #pragma mark - UITableViewDataSource方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return self.messageFrame.count;
+    return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//控制一个section中有多少个cell
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.messageFrame.count;
 }
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//控制cell中的内容
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MessageCell *cell = [MessageCell cellWithTableView:tableView];
     cell.messageFrame = self.messageFrame[indexPath.row];
@@ -128,13 +129,13 @@
 }
 
 #pragma mark - UITableViewDelegate方法
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MessageFrame *frame = self.messageFrame[indexPath.row];
     return frame.rowHeight;
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     
     [self.view endEditing:YES];
@@ -183,10 +184,20 @@
     [self.messageFrame addObject:frame];
     
     //重新加载数据
-    [self.tableView reloadData];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageFrame.count - 1 inSection:0];
-    //滚动显示最后一条数据
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+   // [self.tableView removeFromSuperview];
+   // [self.tableView reloadData];
+    if ([preMessage.text isEqualToString:msg.text]) {
+        NSLog(@"wywy");
+    }
+    else{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageFrame.count - 1 inSection:0];
+        //滚动显示最后一条数据
+       [self.tableView reloadData];
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+   
+    
     return YES;
 }
 @end
