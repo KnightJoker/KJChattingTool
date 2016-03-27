@@ -72,7 +72,6 @@
 
 - (void)setMessageList:(MessageFrame *)messageList{
     _messageList = messageList;
-    //TODO 大小和位置计算
     [self setSubviewsContent];
     [self setSubviewsFrame];
 }
