@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
+#import "TestViewController.h"
+
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
 @end
@@ -26,6 +28,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     //设置navigation导航器
+//        TestViewController* vc = [[TestViewController alloc] init];
     MainViewController* vc = [[MainViewController alloc] init];
     UINavigationController* navi =[[UINavigationController alloc] initWithRootViewController:vc];
     

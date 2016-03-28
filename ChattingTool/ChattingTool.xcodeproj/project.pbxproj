@@ -35,6 +35,7 @@
 		22DAD7231C9F8E4100E75191 /* UIImage+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DAD7221C9F8E4100E75191 /* UIImage+Ext.m */; };
 		22F7584D1C9E9B49003DBE62 /* qzone_app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F7584C1C9E9B49003DBE62 /* qzone_app_icon.png */; };
 		22F7584F1C9E9C98003DBE62 /* icon_me.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 22F7584E1C9E9C98003DBE62 /* icon_me.JPG */; };
+		22F939EE1CA8FEB8005297CD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F939ED1CA8FEB8005297CD /* TestViewController.m */; };
 		22FA86C41C96704C000AD04B /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FA86C31C96704C000AD04B /* MessageCell.m */; };
 		22FA86C71C9679C5000AD04B /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FA86C61C9679C5000AD04B /* Message.m */; };
 		22FA86CA1C9679E2000AD04B /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FA86C91C9679E2000AD04B /* MessageFrame.m */; };
@@ -104,6 +105,8 @@
 		22DAD7221C9F8E4100E75191 /* UIImage+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Ext.m"; sourceTree = "<group>"; };
 		22F7584C1C9E9B49003DBE62 /* qzone_app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qzone_app_icon.png; sourceTree = "<group>"; };
 		22F7584E1C9E9C98003DBE62 /* icon_me.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_me.JPG; sourceTree = "<group>"; };
+		22F939EC1CA8FEB8005297CD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		22F939ED1CA8FEB8005297CD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		22FA86C21C96704C000AD04B /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		22FA86C31C96704C000AD04B /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		22FA86C51C9679C5000AD04B /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				22CC7F9D1C8EF9F200198ECD /* MainViewController.m */,
 				223B8C401C8FC25B004D6E3A /* ChattingViewController.h */,
 				223B8C411C8FC25B004D6E3A /* ChattingViewController.m */,
+				22F939EC1CA8FEB8005297CD /* TestViewController.h */,
+				22F939ED1CA8FEB8005297CD /* TestViewController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				223B8C421C8FC25B004D6E3A /* ChattingViewController.m in Sources */,
 				22D4E6BA1CA7D6E60020275C /* FMDatabase.m in Sources */,
 				22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */,
+				22F939EE1CA8FEB8005297CD /* TestViewController.m in Sources */,
 				22D4E6BB1CA7D6E60020275C /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

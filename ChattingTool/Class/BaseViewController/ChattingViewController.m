@@ -11,6 +11,7 @@
 #import "MessageFrame.h"
 #import "Message.h"
 #import "MessageCell.h"
+#import "FMDB.h"
 
 @interface ChattingViewController ()
 
@@ -28,11 +29,11 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initView];
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    [self initGesture];
+    //[self initDataBase];
 }
 
+#pragma mark - 键盘消息注册
 - (void)viewDidAppear:(BOOL)animated{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -46,6 +47,44 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification
         object:nil];
     [super viewWillDisappear:animated];
+}
+
+#pragma mark - 各种初始化
+
+- (void)initDataBase{
+    NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString* dbpath = [docsdir stringByAppendingPathComponent:@"AppConfig.sqlite"];
+    FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
+    
+    if ([db open]) {
+        NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS ChatRecord(record text)"];
+        BOOL res = [db executeUpdate:sqlCreateTable];
+        if (!res) {
+            NSLog(@"error when creating db table");
+        } else {
+            NSLog(@"success to creating db table");
+        }
+        NSString *text = _messageTextView.text;
+        BOOL insert = [db executeUpdate:@"insert into ChatRecord (record) values(?)",text];
+        if (insert) {
+            NSLog(@"插入数据成功");
+            FMResultSet *rs = [db executeQuery:@"select * from ChatRecord"];
+            while ([rs next]) {
+                NSLog(@"%@",[rs stringForColumn:@"record"]);
+            }
+        }else{
+            NSLog(@"插入数据失败");
+        }
+        [db close];
+    }
+
+}
+
+- (void)initGesture{
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+
 }
 
 - (void)initView{
@@ -179,7 +218,7 @@
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
    
-    
+    [self initDataBase];
     return YES;
 }
 @end
