@@ -54,30 +54,33 @@
 - (void)initDataBase{
     NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString* dbpath = [docsdir stringByAppendingPathComponent:@"AppConfig.sqlite"];
-    FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
-    
-    if ([db open]) {
-        NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS ChatRecord(record text)"];
-        BOOL res = [db executeUpdate:sqlCreateTable];
-        if (!res) {
-            NSLog(@"error when creating db table");
-        } else {
-            NSLog(@"success to creating db table");
-        }
-        NSString *text = _messageTextView.text;
-        BOOL insert = [db executeUpdate:@"insert into ChatRecord (record) values(?)",text];
-        if (insert) {
-            NSLog(@"插入数据成功");
-            FMResultSet *rs = [db executeQuery:@"select * from ChatRecord"];
-            while ([rs next]) {
-                NSLog(@"%@",[rs stringForColumn:@"record"]);
+   FMDatabaseQueue* queue = [FMDatabaseQueue databaseQueueWithPath:dbpath];
+//    FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
+    [queue inDatabase:^(FMDatabase *db){
+        if ([db open]) {
+            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS ChatRecord(record text)"];
+            BOOL res = [db executeUpdate:sqlCreateTable];
+            if (!res) {
+                NSLog(@"error when creating db table");
+            } else {
+                NSLog(@"success to creating db table");
             }
-        }else{
-            NSLog(@"插入数据失败");
+            NSString *text = _messageTextView.text;
+            BOOL insert = [db executeUpdate:@"insert into ChatRecord (record) values(?)",text];
+            if (insert) {
+                NSLog(@"插入数据成功");
+                FMResultSet *rs = [db executeQuery:@"select * from ChatRecord"];
+                while ([rs next]) {
+                    NSLog(@"%@",[rs stringForColumn:@"record"]);
+                }
+            }else{
+                NSLog(@"插入数据失败");
+            }
+            [db close];
         }
-        [db close];
-    }
-
+    }];
+    
+    
 }
 
 - (void)initGesture{
