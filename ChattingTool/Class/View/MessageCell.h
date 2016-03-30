@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class MessageFrame;
+@class Message;
 @interface MessageCell : UITableViewCell
 
-@property (nonatomic,strong) MessageFrame *messageList;
-//@property (nonatomic,strong) Message *message;
+@property (nonatomic,strong) Message *message;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
 @end

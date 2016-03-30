@@ -15,11 +15,10 @@
 
 @interface ChattingViewController ()
 
-@property (strong, nonatomic) UITextField* messageTextView;
-//@property (strong, nonatomic) UILabel* dialogLable;
-@property (strong, nonatomic) UITableView* tableView;
+@property (strong, nonatomic) UITextField *messageTextView;
+@property (strong, nonatomic) UITableView *tableView;
 
-@property (nonatomic,strong) NSMutableArray *messageList;
+@property (nonatomic,strong) NSMutableArray <Message *> *messageList;   //Message数据源
 
 @end
 
@@ -45,7 +44,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification
-        object:nil];
+                                                  object:nil];
     [super viewWillDisappear:animated];
 }
 
@@ -54,8 +53,8 @@
 - (void)initDataBase{
     NSString* docsdir = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString* dbpath = [docsdir stringByAppendingPathComponent:@"AppConfig.sqlite"];
-   FMDatabaseQueue* queue = [FMDatabaseQueue databaseQueueWithPath:dbpath];
-//    FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
+    FMDatabaseQueue* queue = [FMDatabaseQueue databaseQueueWithPath:dbpath];
+    //    FMDatabase* db = [FMDatabase databaseWithPath:dbpath];
     [queue inDatabase:^(FMDatabase *db){
         if ([db open]) {
             NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS ChatRecord(record text)"];
@@ -87,7 +86,7 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGestureRecognizer];
-
+    
 }
 
 - (void)initView{
@@ -128,7 +127,7 @@
 
 #pragma mark - 键盘弹出或隐藏
 - (void)handleKeyboardDidShow:(NSNotification *)notification {
-
+    
     CGRect keyBoardRect=[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat deltaY=keyBoardRect.size.height;
     
@@ -141,7 +140,7 @@
 }
 
 - (void)handleKeyboardWillHide:(NSNotification *)notification {
-
+    
     [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
         self.view.transform = CGAffineTransformIdentity;
     }];
@@ -153,7 +152,7 @@
 
 #pragma mark - UITableViewDataSource方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+    
     return 1;
 }
 
@@ -166,15 +165,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MessageCell *cell = [MessageCell cellWithTableView:tableView];
-    cell.messageList = self.messageList[indexPath.row];
+    cell.message = self.messageList[indexPath.row];
+    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate方法
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MessageFrame *frame = self.messageList[indexPath.row];
-    return frame.rowHeight;
+    return [self cbearxl_estimatedRowHeightForMessage:[self.messageList objectAtIndex:indexPath.row]];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -183,7 +182,7 @@
     [self.view endEditing:YES];
 }
 
- #pragma mark - UITextFieldDelegate方法
+#pragma mark - UITextFieldDelegate方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     NSLog(@"开始编辑");
@@ -195,7 +194,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-
+    
     Message *msg = [[Message alloc] init];
     msg.type = MessageTypeSelf;
     msg.text = textField.text;
@@ -205,23 +204,30 @@
     msg.time = [formatter stringFromDate:date];
     
     //判断前一条信息和当前信息的时间是否相同
-    Message *preMessage = (Message *)[[self.messageList lastObject] message];
+    Message *preMessage = [self.messageList lastObject];
     if ([preMessage.time isEqualToString:msg.time]) {
         msg.hiddemTime = YES;
     }
-//    
-    MessageFrame *frame = [[MessageFrame alloc] init];
-    frame.message = msg;
-    [self.messageList addObject:frame];
+    
+    //消息数据源，只装消息，不装任何Frame相关内容
+    [self.messageList addObject:msg];
     
     //重新加载数据
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageList.count - 1 inSection:0];
     //滚动显示最后一条数据
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
-   
+    
+    
     [self initDataBase];
+    
     return YES;
+}
+
+#pragma mark - Private
+- (CGFloat)cbearxl_estimatedRowHeightForMessage:(Message *)message {
+    MessageFrame *frame = [[MessageFrame alloc] init];
+    frame.message = message;
+    return frame.rowHeight;
 }
 @end
