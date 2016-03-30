@@ -72,6 +72,7 @@
     
 }
 + (NSMutableArray *)messageFrameList {
+    
     NSArray *message = [Message messageList];
     NSMutableArray *tem = [NSMutableArray array];
     for (Message *msg in message) {

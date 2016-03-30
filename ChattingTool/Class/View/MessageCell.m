@@ -72,6 +72,8 @@
 
 - (void)setMessageList:(MessageFrame *)messageList{
     _messageList = messageList;
+//    MessageFrame *frame = [[MessageFrame alloc] init];
+//    frame.message = message;
     [self setSubviewsContent];
     [self setSubviewsFrame];
 }

@@ -12,6 +12,7 @@
 @interface MessageCell : UITableViewCell
 
 @property (nonatomic,strong) MessageFrame *messageList;
+//@property (nonatomic,strong) Message *message;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

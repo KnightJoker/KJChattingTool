@@ -206,7 +206,7 @@
     if ([preMessage.time isEqualToString:msg.time]) {
         msg.hiddemTime = YES;
     }
-    
+//    
     MessageFrame *frame = [[MessageFrame alloc] init];
     frame.message = msg;
     [self.messageList addObject:frame];
