@@ -20,6 +20,7 @@
     }
     return self;
 }
+
 - (void)initView{
     self.backgroundColor = [UIColor whiteColor];
     
@@ -44,8 +45,15 @@
     [self addSubview:contactBtn];
     [self addSubview:dynamicBtn];
     
-    [messageBtn addTarget:self action:@selector(messageBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-    [_delegate messageBtnDidClick];
+    [messageBtn addTarget:self action:@selector(messageBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    
 
+}
+
+- (void)messageBtnDidClick:(id)sender {
+
+    if ([_delegate respondsToSelector:@selector(mainView:messageBtnDidClick:)]) {
+        [_delegate mainView:self messageBtnDidClick:sender];
+    }
 }
 @end

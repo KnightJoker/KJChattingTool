@@ -107,7 +107,7 @@
 //    _messageTextView.backgroundColor = [UIColor yellowColor];
 //    _messageTextView.keyboardType = UIKeyboardTypeDefault;
 //    _messageTextView.returnKeyType = UIReturnKeySend;
-    MessageText *msgText = [[MessageText alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    MessageText *msgText = [[MessageText alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
    // _messageTextView.delegate = self;
    // msgText = _messageTextView;
 //    _messageTextView.delegate = self;
@@ -188,19 +188,17 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - UITextFieldDelegate方法
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-    NSLog(@"开始编辑");
+#pragma mark - TextView delegate
+- (void)textView:(MessageText *)messageText textFieldDidBeginEditing:(UITextField *)textField {
+
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    
-    NSLog(@"结束编辑");
+- (void)textView:(MessageText *)messageText textFieldDidEndEditing:(UITextField *)textField {
+
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
+- (void)textViewTextFieldDidPressedReturnButton:(UITextField *)textField {
+
     Message *msg = [[Message alloc] init];
     msg.type = MessageTypeSelf;
     msg.text = textField.text;
@@ -226,8 +224,6 @@
     
     
     [self initDataBase];
-    
-    return YES;
 }
 
 #pragma mark - Private

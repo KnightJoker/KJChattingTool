@@ -32,16 +32,16 @@
 #pragma mark - initiation
 
 - (void)initView {
-    MainView *main = [[MainView alloc]init];
-    main.delegate = self;
-    [self.view addSubview:main];
+    MainView *mainView = [[MainView alloc]init];
+    mainView.delegate = self;
+    mainView.frame = self.view.frame;
+    [self.view addSubview:mainView];
 }
 
-- (void)messageBtnDidClick{
+- (void)mainView:(MainView *)view messageBtnDidClick:(id)sender {
     NSLog(@"消息成功");
     ChattingViewController* vc = [[ChattingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 @end

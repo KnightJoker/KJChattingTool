@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class MessageText;
+
 @protocol MessageTextDelegate <NSObject>
 
+- (void)textView:(MessageText *)messageText textFieldDidBeginEditing:(UITextField *)textField;
+- (void)textView:(MessageText *)messageText textFieldDidEndEditing:(UITextField *)textField;
+- (void)textViewTextFieldDidPressedReturnButton:(UITextField *)textField;
 
 @end
 
-@interface MessageText : UIView
+@interface MessageText : UIView <UITextFieldDelegate>
 
-@property(nonatomic,assign)id <MessageTextDelegate> delegate;
+@property (nonatomic,assign)id <MessageTextDelegate> delegate;
 
 @end

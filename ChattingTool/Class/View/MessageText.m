@@ -38,10 +38,12 @@
     _messageTextView.keyboardType = UIKeyboardTypeDefault;
     _messageTextView.returnKeyType = UIReturnKeySend;
     
-    _messageTextView.delegate = self.delegate;
+    _messageTextView.delegate = self;
+    
     [self addSubview:_messageTextView];
     
 }
+
 
 - (void)initUI{
     UIButton *voice = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 60, 40, 40)];
@@ -56,5 +58,43 @@
     [self addSubview:voice];
     [self addSubview:emotion];
     [self addSubview:more];
+}
+
+#pragma mark - UITextFieldDelegate方法
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    //View内部UI改变
+    
+    //改变结束后，回调VC
+    if ([_delegate respondsToSelector:@selector(textView:textFieldDidBeginEditing:)]) {
+        [_delegate textView:self textFieldDidBeginEditing:textField];
+    }
+    
+    NSLog(@"开始编辑");
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    //View内部UI改变
+    
+    //改变结束后，回调VC
+    if ([_delegate respondsToSelector:@selector(textView:textFieldDidEndEditing:)]) {
+        [_delegate textView:self textFieldDidEndEditing:textField];
+    }
+    NSLog(@"结束编辑");
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    //改变结束后，回调VC
+    if ([_delegate respondsToSelector:@selector(textViewTextFieldDidPressedReturnButton:)]) {
+        [_delegate textViewTextFieldDidPressedReturnButton:textField];
+    }
+    
+    //View内部UI改变
+    textField.text = @"";
+
+    
+    return YES;
 }
 @end

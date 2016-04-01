@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class MainView;
+
 @protocol MainViewDelegate <NSObject>
 
 @required
 
-- (void)messageBtnDidClick;
+- (void)mainView:(MainView *)view messageBtnDidClick:(id)sender;
 
 @end
 
