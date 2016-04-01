@@ -9,6 +9,11 @@
 #import "MainViewController.h"
 #import "PublicDefine.h"
 #import "ChattingViewController.h"
+#import "MainView.h"
+
+@interface MainViewController () <MainViewDelegate>
+
+@end
 
 @implementation MainViewController
 
@@ -27,33 +32,12 @@
 #pragma mark - initiation
 
 - (void)initView {
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-//    NSLog(@"%f",SCREEN_HEIGHT);
-//    NSLog(@"%f",SCREEN_WIDTH);
-    
-    UIButton* messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 50, 50)];
-
-    [messageBtn setImage:[UIImage imageNamed:@"shortcut_multichat.png"] forState:UIControlStateNormal];
-    
-    
-    UIButton* contactBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 240, SCREEN_HEIGHT - 80, 50, 50)];
-
-    [contactBtn setImage:[UIImage imageNamed:@"shortcut_addFri.png"] forState:UIControlStateNormal];
-    
-    
-    UIButton* dynamicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 80, 50, 50)];
-
-    [dynamicBtn setImage:[UIImage imageNamed:@"favorite_classify_qzone@2x.png"] forState:UIControlStateNormal];
-    
-    [self.view addSubview:messageBtn];
-    [self.view addSubview:contactBtn];
-    [self.view addSubview:dynamicBtn];
-    
-    [messageBtn addTarget:self action:@selector(message:) forControlEvents:UIControlEventTouchUpInside];
+    MainView *main = [[MainView alloc]init];
+    main.delegate = self;
+    [self.view addSubview:main];
 }
 
-- (void)message:(id)sender{
+- (void)messageBtnDidClick{
     NSLog(@"消息成功");
     ChattingViewController* vc = [[ChattingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];

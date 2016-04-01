@@ -12,8 +12,9 @@
 #import "Message.h"
 #import "MessageCell.h"
 #import "FMDB.h"
+#import "MessageText.h"
 
-@interface ChattingViewController ()
+@interface ChattingViewController () <MessageTextDelegate>
 
 @property (strong, nonatomic) UITextField *messageTextView;
 @property (strong, nonatomic) UITableView *tableView;
@@ -102,13 +103,18 @@
 }
 
 - (void)initTextView{
-    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 60, 350, 40)];
-    _messageTextView.backgroundColor = [UIColor yellowColor];
-    _messageTextView.keyboardType = UIKeyboardTypeDefault;
-    _messageTextView.returnKeyType = UIReturnKeySend;
-    _messageTextView.delegate = self;
-    
-    [self.view addSubview:_messageTextView];
+//    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 60, 350, 40)];
+//    _messageTextView.backgroundColor = [UIColor yellowColor];
+//    _messageTextView.keyboardType = UIKeyboardTypeDefault;
+//    _messageTextView.returnKeyType = UIReturnKeySend;
+    MessageText *msgText = [[MessageText alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+   // _messageTextView.delegate = self;
+   // msgText = _messageTextView;
+//    _messageTextView.delegate = self;
+//    msgText.delegate = self;
+//    msgText.delegate = self;
+    msgText.delegate = self;
+    [self.view addSubview:msgText];
 }
 - (void)initTableView{
     
