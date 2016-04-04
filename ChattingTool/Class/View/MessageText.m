@@ -30,6 +30,7 @@
     [self initTextView];
     [self initUI];
     [self initGesture];
+    //test
 }
 
 - (void)initTextView{
