@@ -29,8 +29,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initView];
-    [self initGesture];
-    //[self initDataBase];
 }
 
 #pragma mark - 键盘消息注册
@@ -83,13 +81,6 @@
     
 }
 
-- (void)initGesture{
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-    
-}
-
 - (void)initView{
     
     [self initData];
@@ -103,16 +94,8 @@
 }
 
 - (void)initTextView{
-//    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 60, 350, 40)];
-//    _messageTextView.backgroundColor = [UIColor yellowColor];
-//    _messageTextView.keyboardType = UIKeyboardTypeDefault;
-//    _messageTextView.returnKeyType = UIReturnKeySend;
+    
     MessageText *msgText = [[MessageText alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-   // _messageTextView.delegate = self;
-   // msgText = _messageTextView;
-//    _messageTextView.delegate = self;
-//    msgText.delegate = self;
-//    msgText.delegate = self;
     msgText.delegate = self;
     [self.view addSubview:msgText];
 }
@@ -150,10 +133,6 @@
     [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
         self.view.transform = CGAffineTransformIdentity;
     }];
-}
-
-- (void)keyboardHide:(UITapGestureRecognizer*)tap{
-    [_messageTextView resignFirstResponder];
 }
 
 #pragma mark - UITableViewDataSource方法

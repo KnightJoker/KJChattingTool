@@ -29,6 +29,7 @@
 - (void)initView{
     [self initTextView];
     [self initUI];
+    [self initGesture];
 }
 
 - (void)initTextView{
@@ -58,6 +59,16 @@
     [self addSubview:voice];
     [self addSubview:emotion];
     [self addSubview:more];
+}
+
+- (void)initGesture{
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    [self addGestureRecognizer:tapGestureRecognizer];
+    
+}
+- (void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [_messageTextView resignFirstResponder];
 }
 
 #pragma mark - UITextFieldDelegate方法
