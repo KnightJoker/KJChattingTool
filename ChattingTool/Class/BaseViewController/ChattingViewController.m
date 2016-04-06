@@ -12,7 +12,7 @@
 #import "Message.h"
 #import "MessageCell.h"
 #import "FMDB.h"
-#import "MessageText.h"
+#import "MessageTextView.h"
 
 @interface ChattingViewController () <MessageTextDelegate>
 
@@ -95,7 +95,7 @@
 
 - (void)initTextView{
     
-    MessageText *msgText = [[MessageText alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    MessageTextView *msgText = [[MessageTextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     msgText.delegate = self;
     [self.view addSubview:msgText];
 }
@@ -168,11 +168,11 @@
 }
 
 #pragma mark - TextView delegate
-- (void)textView:(MessageText *)messageText textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textView:(MessageTextView *)messageText textFieldDidBeginEditing:(UITextField *)textField {
 
 }
 
-- (void)textView:(MessageText *)messageText textFieldDidEndEditing:(UITextField *)textField {
+- (void)textView:(MessageTextView *)messageText textFieldDidEndEditing:(UITextField *)textField {
 
 }
 
@@ -204,7 +204,19 @@
     
     [self initDataBase];
 }
-
+#pragma mark - TextViewBtn delegate
+- (void)speakBtnDidClick{
+    NSLog(@"语音聊天");
+}
+- (void)speakBtnUnpressClick{
+    NSLog(@"我要松手了！");
+}
+- (void)emotionBtnDidClick{
+    NSLog(@"表情聊天");
+}
+- (void)moreBtnDidClick{
+    NSLog(@"更多功能");
+}
 #pragma mark - Private
 - (CGFloat)cbearxl_estimatedRowHeightForMessage:(Message *)message {
     MessageFrame *frame = [[MessageFrame alloc] init];

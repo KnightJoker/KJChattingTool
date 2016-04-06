@@ -48,7 +48,7 @@
 		22CC7F7A1C8EDDA300198ECD /* ChattingToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */; };
 		22CC7F951C8EF1BC00198ECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F941C8EF1BC00198ECD /* main.m */; };
 		22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F9D1C8EF9F200198ECD /* MainViewController.m */; };
-		22CF37301CAE156300C20AEC /* MessageText.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CF372F1CAE156300C20AEC /* MessageText.m */; };
+		22CF37301CAE156300C20AEC /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CF372F1CAE156300C20AEC /* MessageTextView.m */; };
 		22D4E6AA1CA7D36A0020275C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4E6A91CA7D36A0020275C /* libsqlite3.tbd */; };
 		22D4E6AC1CA7D37C0020275C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4E6AB1CA7D37C0020275C /* libsqlite3.0.tbd */; };
 		22DAD7201C9F8CB000E75191 /* NSString+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DAD71F1C9F8CB000E75191 /* NSString+Ext.m */; };
@@ -133,8 +133,8 @@
 		22CC7F941C8EF1BC00198ECD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22CC7F9C1C8EF9F200198ECD /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		22CC7F9D1C8EF9F200198ECD /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		22CF372E1CAE156300C20AEC /* MessageText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageText.h; sourceTree = "<group>"; };
-		22CF372F1CAE156300C20AEC /* MessageText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageText.m; sourceTree = "<group>"; };
+		22CF372E1CAE156300C20AEC /* MessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
+		22CF372F1CAE156300C20AEC /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
 		22D4E6A91CA7D36A0020275C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		22D4E6AB1CA7D37C0020275C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		22D4E6C31CA7DA140020275C /* PublicDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PublicDefine.h; path = Class/Common/PublicDefine.h; sourceTree = SOURCE_ROOT; };
@@ -191,8 +191,8 @@
 				2214186A1CAB6C2B0023157B /* MessageFrame.m */,
 				22FA86C21C96704C000AD04B /* MessageCell.h */,
 				22FA86C31C96704C000AD04B /* MessageCell.m */,
-				22CF372E1CAE156300C20AEC /* MessageText.h */,
-				22CF372F1CAE156300C20AEC /* MessageText.m */,
+				22CF372E1CAE156300C20AEC /* MessageTextView.h */,
+				22CF372F1CAE156300C20AEC /* MessageTextView.m */,
 				220676C21CAE66710008F23F /* MainView.h */,
 				220676C31CAE66710008F23F /* MainView.m */,
 			);
@@ -514,7 +514,7 @@
 			files = (
 				22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */,
 				2214186B1CAB6C2B0023157B /* MessageFrame.m in Sources */,
-				22CF37301CAE156300C20AEC /* MessageText.m in Sources */,
+				22CF37301CAE156300C20AEC /* MessageTextView.m in Sources */,
 				221418901CABBDD30023157B /* FMDatabasePool.m in Sources */,
 				221418911CABBDD30023157B /* FMDatabaseQueue.m in Sources */,
 				22CC7F951C8EF1BC00198ECD /* main.m in Sources */,
