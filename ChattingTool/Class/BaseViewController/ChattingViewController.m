@@ -19,6 +19,17 @@
 @property (strong, nonatomic) UITextField *messageTextView;
 @property (strong, nonatomic) UITableView *tableView;
 
+//录音器
+@property (strong, nonatomic) AVAudioRecorder *recorder;
+//播放器
+@property (strong, nonatomic) AVAudioPlayer *player;
+@property (strong, nonatomic) NSDictionary *recorderSettingsDict;
+
+//定时器
+@property (strong, nonatomic) NSTimer *timer;
+//录音名字
+@property (strong, nonatomic) NSString *playName;
+
 @property (nonatomic,strong) NSMutableArray <Message *> *messageList;   //Message数据源
 
 @end
@@ -114,6 +125,21 @@
     
 }
 
+- (void)initPlayer{
+
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    _playName = [NSString stringWithFormat:@"%@/play.aac",docDir];
+    //录音设置
+    _recorderSettingsDict =[[NSDictionary alloc] initWithObjectsAndKeys:
+                           [NSNumber numberWithInt:kAudioFormatMPEG4AAC],AVFormatIDKey,
+                           [NSNumber numberWithInt:1000.0],AVSampleRateKey,
+                           [NSNumber numberWithInt:2],AVNumberOfChannelsKey,
+                           [NSNumber numberWithInt:8],AVLinearPCMBitDepthKey,
+                           [NSNumber numberWithBool:NO],AVLinearPCMIsBigEndianKey,
+                           [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                            nil];
+}
+
 #pragma mark - 键盘弹出或隐藏
 - (void)handleKeyboardDidShow:(NSNotification *)notification {
     
@@ -207,12 +233,56 @@
 #pragma mark - TextViewBtn delegate
 - (void)speakBtnDidClick{
     NSLog(@"语音聊天");
+    //按下录音
+    if ([self canRecord]) {
+        
+        NSError *error = nil;
+        //必须真机上测试,模拟器上可能会崩溃
+        _recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:_playName] settings:_recorderSettingsDict error:&error];
+        
+        if (_recorder) {
+            _recorder.meteringEnabled = YES;
+            [_recorder prepareToRecord];
+            [_recorder record];
+            
+            //启动定时器
+            _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimer:) userInfo:nil repeats:YES];
+            
+        } else
+        {
+            NSInteger errorCode = CFSwapInt32HostToBig ((uint32_t)[error code]);
+            NSLog(@"Error: %@ [%4.4s])" , [error localizedDescription], (char*)&errorCode);
+            
+        }
+    }
 }
 - (void)speakBtnUnpressClick{
     NSLog(@"我要松手了！");
+    //松开 结束录音
+    
+    //录音停止
+    [_recorder stop];
+    _recorder = nil;
+    //结束定时器
+    [_timer invalidate];
+    _timer = nil;
 }
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
+    
+    NSError *playerError;
+    
+    //播放
+    _player = nil;
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:_playName] error:&playerError];
+    
+    if (_player == nil)
+    {
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }else{
+        [_player play];
+    }
+    
 }
 - (void)moreBtnDidClick{
     NSLog(@"更多功能");
@@ -224,5 +294,41 @@
     MessageFrame *frame = [[MessageFrame alloc] init];
     frame.message = message;
     return frame.rowHeight;
+}
+
+-(void)levelTimer:(NSTimer*)timer_
+{
+    //call to refresh meter values刷新平均和峰值功率,此计数是以对数刻度计量的,-160表示完全安静，0表示最大输入值
+    [_recorder updateMeters];
+    
+}
+
+//判断是否允许使用麦克风7.0新增的方法requestRecordPermission
+-(BOOL)canRecord
+{
+    __block BOOL bCanRecord = YES;
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending)
+    {
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
+            [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                if (granted) {
+                    bCanRecord = YES;
+                }
+                else {
+                    bCanRecord = NO;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"app需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"关闭"
+                                          otherButtonTitles:nil] show];
+                    });
+                }
+            }];
+        }
+    }
+    
+    return bCanRecord;
 }
 @end
