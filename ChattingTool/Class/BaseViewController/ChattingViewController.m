@@ -117,8 +117,8 @@
 #pragma mark - 键盘弹出或隐藏
 - (void)handleKeyboardDidShow:(NSNotification *)notification {
     
-    CGRect keyBoardRect=[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat deltaY=keyBoardRect.size.height;
+    CGRect keyBoardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat deltaY = keyBoardRect.size.height;
     
     [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
         
@@ -216,6 +216,8 @@
 }
 - (void)moreBtnDidClick{
     NSLog(@"更多功能");
+//    [self viewDidAppear:YES];
+    
 }
 #pragma mark - Private
 - (CGFloat)cbearxl_estimatedRowHeightForMessage:(Message *)message {
