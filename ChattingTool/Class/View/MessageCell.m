@@ -98,8 +98,18 @@
         [self.textBtn setBackgroundImage:[UIImage imageNamed:@"picture"] forState:UIControlStateNormal];
         [self.textBtn setBackgroundImage:[UIImage imageNamed:@"picture"] forState:UIControlStateHighlighted];
     }
+    
+    if (_message.text == nil) {
+        [self.textBtn setBackgroundImage:[UIImage imageNamed:@"bubble_voice_send_icon_3@2x.png"] forState:UIControlStateNormal];
+        [self.textBtn addTarget:self action:@selector(voicePlayer:) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
+- (void)voicePlayer:(id)sender{
 
+    if (_delegate && [_delegate respondsToSelector:@selector(voicePlayer)]) {
+        [_delegate voicePlayer];
+    }
+}
 - (void)setSubviewsFrame {
     
     //计算显示所需的MessageFrame

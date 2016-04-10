@@ -9,10 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @class Message;
+
+@protocol MessageCellDelegate <NSObject>
+
+- (void)voicePlayer;
+
+@end
+
 @interface MessageCell : UITableViewCell
 
 @property (nonatomic,strong) Message *message;
 
+@property (nonatomic,assign)id <MessageCellDelegate> delegate;
+
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @end
+

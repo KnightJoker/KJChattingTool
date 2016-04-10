@@ -14,7 +14,9 @@
 #import "FMDB.h"
 #import "MessageTextView.h"
 
-@interface ChattingViewController () <MessageTextDelegate>
+@interface ChattingViewController () <MessageCellDelegate,MessageTextDelegate>{
+    NSInteger _temp;
+}
 
 @property (strong, nonatomic) UITextField *messageTextView;
 @property (strong, nonatomic) UITableView *tableView;
@@ -29,8 +31,9 @@
 @property (strong, nonatomic) NSTimer *timer;
 //录音名字
 @property (strong, nonatomic) NSString *playName;
+//Message数据源
+@property (nonatomic,strong) NSMutableArray <Message *> *messageList;
 
-@property (nonatomic,strong) NSMutableArray <Message *> *messageList;   //Message数据源
 
 @end
 
@@ -97,6 +100,7 @@
     [self initData];
     [self initTableView];
     [self initTextView];
+    [self initPlayer];
     
 }
 
@@ -207,6 +211,7 @@
     Message *msg = [[Message alloc] init];
     msg.type = MessageTypeSelf;
     msg.text = textField.text;
+    
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"HH:mm";
@@ -226,10 +231,27 @@
     //滚动显示最后一条数据
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    
-    
+
     [self initDataBase];
 }
+#pragma mark - MessageCell delegate
+- (void)voicePlayer{
+    NSError *playerError;
+    
+    //播放
+    _player = nil;
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:_playName] error:&playerError];
+    
+    if (_player == nil)
+    {
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }else{
+        [_player play];
+    }
+    NSLog(@"DHOSDHA");
+}
+
+
 #pragma mark - TextViewBtn delegate
 - (void)speakBtnDidClick{
     NSLog(@"语音聊天");
@@ -237,7 +259,7 @@
     if ([self canRecord]) {
         
         NSError *error = nil;
-        //必须真机上测试,模拟器上可能会崩溃
+ 
         _recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:_playName] settings:_recorderSettingsDict error:&error];
         
         if (_recorder) {
@@ -266,6 +288,30 @@
     //结束定时器
     [_timer invalidate];
     _timer = nil;
+    
+    Message *msg = [[Message alloc] init];
+    msg.type = MessageTypeSelf;
+    msg.text = nil;
+    
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"HH:mm";
+    msg.time = [formatter stringFromDate:date];
+    
+    //判断前一条信息和当前信息的时间是否相同
+    Message *preMessage = [self.messageList lastObject];
+    if ([preMessage.time isEqualToString:msg.time]) {
+        msg.hiddemTime = YES;
+    }
+    
+    //消息数据源，只装消息，不装任何Frame相关内容
+    [self.messageList addObject:msg];
+    
+    //重新加载数据
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageList.count - 1 inSection:0];
+    //滚动显示最后一条数据
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
@@ -318,11 +364,15 @@
                 else {
                     bCanRecord = NO;
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"app需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"关闭"
-                                          otherButtonTitles:nil] show];
+//                        [[[UIAlertView alloc] initWithTitle:nil
+//                                                    message:@"app需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风"
+//                                                   delegate:nil
+//                                          cancelButtonTitle:@"关闭"
+//                                          otherButtonTitles:nil] show];
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"app需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"设置成功" style:UIAlertActionStyleDefault handler:nil];
+                        [alertController addAction:ok];
+                        [self presentViewController:alertController animated:YES completion:nil];
                     });
                 }
             }];

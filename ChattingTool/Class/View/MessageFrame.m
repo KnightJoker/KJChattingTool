@@ -18,11 +18,8 @@
  重写set方法，设置frame
  */
 - (void)setMessage:(Message *)message {
+ 
     _message = message;
-    
-//    //屏幕宽度
-//    UIScreen *screen = [UIScreen mainScreen];
-//    CGFloat screenW = screen.bounds.size.width;
     //间距
     CGFloat margin = 10;
     
