@@ -17,6 +17,9 @@
 @property (strong, nonatomic)   UIButton *emotion;
 @property (strong, nonatomic)   UIButton *more;
 
+////定义ToolIndex类型的block,用于接受外界传过来的block
+//@property (nonatomic, strong) ToolIndex myBlock;
+
 @end
 
 @implementation MessageTextView
@@ -39,7 +42,7 @@
 
 - (void)initTextView{
     
-    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 360, SCREEN_HEIGHT - 60, 250, 40)];
+    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(53, 20, 250, 40)];
     _messageTextView.backgroundColor = [UIColor grayColor];
     _messageTextView.keyboardType = UIKeyboardTypeASCIICapable;
     _messageTextView.returnKeyType = UIReturnKeySend;
@@ -52,14 +55,14 @@
 
 
 - (void)initUI{
-    _voice = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 60, 40, 40)];
+    _voice = [[UIButton alloc]initWithFrame:CGRectMake(10, 20, 40, 40)];
     [_voice setImage:[UIImage imageNamed:@"chat_bottom_PTT_nor@3x.png"] forState:UIControlStateNormal];
     _voice.tag = 1;
     
-    _emotion = [[UIButton alloc]initWithFrame:CGRectMake(310, SCREEN_HEIGHT - 60, 40, 40)];
+    _emotion = [[UIButton alloc]initWithFrame:CGRectMake(310, 20, 40, 40)];
     [_emotion setImage:[UIImage imageNamed:@"chat_bottom_emotion_nor@3x.png"] forState:UIControlStateNormal];
     
-    _more = [[UIButton alloc]initWithFrame:CGRectMake(360, SCREEN_HEIGHT - 60, 40, 40)];
+    _more = [[UIButton alloc]initWithFrame:CGRectMake(360, 20, 40, 40)];
     [_more setImage:[UIImage imageNamed:@"chat_bottom_more_nor@3x.png"] forState:UIControlStateNormal];
     
     [self addSubview:_voice];
@@ -69,6 +72,17 @@
     [_voice addTarget:self action:@selector(voiceBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [_emotion addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [_more addTarget:self action:@selector(moreBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    _more.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    //添加水平约束
+//    NSArray *buttonH = [NSLayoutConstraint constraintsWithVisualFormat:@
+//                        "H:|[_more]|"options:0 metrics:0 views:NSDictionaryOfVariableBindings(_more)];
+//    [self addConstraints:buttonH];
+//    
+//    NSArray *button2V = [NSLayoutConstraint constraintsWithVisualFormat:@
+//                         "V:|[_more]|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_more)];
+//    [self addConstraints:button2V];
 }
 
 - (void)initGesture{
@@ -89,7 +103,7 @@
         [_voice setImage:[UIImage imageNamed:@"chat_bottom_PTT_press@3x.png"] forState:UIControlStateNormal];
         _voice.tag = 0;
         
-        UIButton *speak = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 360, SCREEN_HEIGHT - 60, 250, 40)];
+        UIButton *speak = [[UIButton alloc] initWithFrame:CGRectMake(53, 20, 250, 40)];
         [speak setTitle:@"按住 说话" forState:UIControlStateNormal];
         [self addSubview:speak];
         [speak addTarget:self action:@selector(speakBtnDidClick:) forControlEvents:UIControlEventTouchDown];
@@ -126,10 +140,16 @@
 //更多按钮
 - (void)moreBtnDidClick:(id)sender{
     
+//    self.myBlock(2);
     if (_delegate && [_delegate respondsToSelector:@selector(moreBtnDidClick)]) {
         [_delegate moreBtnDidClick];
     }
 }
+
+//-(void) setToolIndex:(ToolIndex)toolBlock
+//{
+//    self.myBlock = toolBlock;
+//}
 
 #pragma mark - UITextFieldDelegate方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

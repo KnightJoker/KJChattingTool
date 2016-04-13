@@ -110,7 +110,7 @@
 
 - (void)initTextView{
     
-    MessageTextView *msgText = [[MessageTextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    MessageTextView *msgText = [[MessageTextView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 80, SCREEN_WIDTH, 70)];
     msgText.delegate = self;
     [self.view addSubview:msgText];
 }
@@ -315,20 +315,6 @@
 }
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
-    
-    NSError *playerError;
-    
-    //播放
-    _player = nil;
-    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:_playName] error:&playerError];
-    
-    if (_player == nil)
-    {
-        NSLog(@"ERror creating player: %@", [playerError description]);
-    }else{
-        [_player play];
-    }
-    
 }
 - (void)moreBtnDidClick{
     NSLog(@"更多功能");
@@ -349,11 +335,11 @@
     
 }
 
-//判断是否允许使用麦克风7.0新增的方法requestRecordPermission
+//判断是否允许使用麦克风
 -(BOOL)canRecord
 {
     __block BOOL bCanRecord = YES;
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending)
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0"] != NSOrderedAscending)
     {
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {

@@ -81,6 +81,7 @@
     [self setSubviewsFrame];
 }
 
+
 - (void)setSubviewsContent {
     
     //给时间子控件赋值
@@ -106,6 +107,7 @@
 }
 - (void)voicePlayer:(id)sender{
 
+    NSLog(@"123");
     if (_delegate && [_delegate respondsToSelector:@selector(voicePlayer)]) {
         [_delegate voicePlayer];
     }

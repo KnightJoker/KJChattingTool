@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+//
+////定义block块变量类型，用于回调,把本View上的按钮的index传到Controller中
+//typedef void (^ToolIndex) (NSInteger index);
+
 @class MessageTextView;
 
 @protocol MessageTextDelegate <NSObject>
@@ -26,5 +30,8 @@
 @interface MessageTextView : UIView <UITextFieldDelegate>
 
 @property (nonatomic,assign)id <MessageTextDelegate> delegate;
+
+////块变量类型的setter方法
+//-(void)setToolIndex:(ToolIndex) toolBlock;
 
 @end
