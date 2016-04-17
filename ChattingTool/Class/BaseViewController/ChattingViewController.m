@@ -337,7 +337,7 @@
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
 }
-- (void)moreBtnPressClick{
+- (void)moreBtnDidClick{
     NSLog(@"更多功能");
 //    [self viewDidAppear:YES];
     [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
@@ -347,7 +347,7 @@
     }];
     
 }
-- (void)moreBtnUppressClick{
+- (void)moreBtnUnPressClick{
     [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
         make.top.mas_equalTo(SCREEN_HEIGHT - 80);
         make.left.mas_equalTo(0);
