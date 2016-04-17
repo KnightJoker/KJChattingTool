@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <Masonry.h>
 
 @interface ChattingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 

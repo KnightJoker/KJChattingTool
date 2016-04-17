@@ -47,10 +47,11 @@
 		221418921CABBDD30023157B /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2214188C1CABBDD30023157B /* FMResultSet.m */; };
 		221418931CABBDD30023157B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2214188D1CABBDD30023157B /* Info.plist */; };
 		223B8C421C8FC25B004D6E3A /* ChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 223B8C411C8FC25B004D6E3A /* ChattingViewController.m */; };
+		22B3DE161CC1400600833737 /* ChattingToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F6E1C8EDDA300198ECD /* ChattingToolTests.m */; };
+		22B3DE181CC1470F00833737 /* project.xcworkspace in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3DE171CC1470F00833737 /* project.xcworkspace */; settings = {ATTRIBUTES = (Weak, ); }; };
 		22CC7F531C8EDDA300198ECD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F521C8EDDA300198ECD /* AppDelegate.m */; };
 		22CC7F561C8EDDA300198ECD /* ChattingTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F541C8EDDA300198ECD /* ChattingTool.xcdatamodeld */; };
 		22CC7F611C8EDDA300198ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC7F601C8EDDA300198ECD /* Assets.xcassets */; };
-		22CC7F6F1C8EDDA300198ECD /* ChattingToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F6E1C8EDDA300198ECD /* ChattingToolTests.m */; };
 		22CC7F7A1C8EDDA300198ECD /* ChattingToolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F791C8EDDA300198ECD /* ChattingToolUITests.m */; };
 		22CC7F951C8EF1BC00198ECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F941C8EF1BC00198ECD /* main.m */; };
 		22CC7F9E1C8EF9F200198ECD /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC7F9D1C8EF9F200198ECD /* MainViewController.m */; };
@@ -131,6 +132,7 @@
 		2214188D1CABBDD30023157B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223B8C401C8FC25B004D6E3A /* ChattingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattingViewController.h; sourceTree = "<group>"; };
 		223B8C411C8FC25B004D6E3A /* ChattingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattingViewController.m; sourceTree = "<group>"; };
+		22B3DE171CC1470F00833737 /* project.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = project.xcworkspace; path = ChattingTool.xcodeproj/project.xcworkspace; sourceTree = "<group>"; };
 		22CC7F4B1C8EDDA300198ECD /* ChattingTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChattingTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC7F511C8EDDA300198ECD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		22CC7F521C8EDDA300198ECD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B3DE181CC1470F00833737 /* project.xcworkspace in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +389,7 @@
 		604FBB4DF71E1679AC79CDD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22B3DE171CC1470F00833737 /* project.xcworkspace */,
 				4D13230A8FD171CD42B5BF6C /* libPods.a */,
 			);
 			name = Frameworks;
@@ -635,7 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CC7F6F1C8EDDA300198ECD /* ChattingToolTests.m in Sources */,
+				22B3DE161CC1400600833737 /* ChattingToolTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +687,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -727,6 +732,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -739,6 +745,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				"OTHER_LDFLAGS[arch=*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -775,6 +782,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ChattingToolTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cbearxl.ChattingToolTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChattingTool.app/ChattingTool";
@@ -787,6 +795,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ChattingToolTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cbearxl.ChattingToolTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChattingTool.app/ChattingTool";

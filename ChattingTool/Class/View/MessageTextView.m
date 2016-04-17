@@ -63,6 +63,7 @@
     [_emotion setImage:[UIImage imageNamed:@"chat_bottom_emotion_nor@3x.png"] forState:UIControlStateNormal];
     
     _more = [[UIButton alloc]initWithFrame:CGRectMake(360, 20, 40, 40)];
+//    _more = [[UIButton alloc] init];
     [_more setImage:[UIImage imageNamed:@"chat_bottom_more_nor@3x.png"] forState:UIControlStateNormal];
     
     [self addSubview:_voice];
@@ -83,8 +84,19 @@
 //    NSArray *button2V = [NSLayoutConstraint constraintsWithVisualFormat:@
 //                         "V:|[_more]|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_more)];
 //    [self addConstraints:button2V];
+//    [_more mas_makeConstraints:^(MASConstraintMaker *make){
+//        make.top.mas_equalTo(25);
+//        make.left.mas_equalTo(360);
+//    }];
+    
 }
 
+//- (void)updateConstraints{
+//    [_more mas_remakeConstraints:^(MASConstraintMaker *make){
+//        make.top.mas_equalTo(0);
+//        make.left.mas_equalTo(0);
+//    }];
+//}
 - (void)initGesture{
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     tapGestureRecognizer.cancelsTouchesInView = NO;
@@ -141,6 +153,11 @@
 - (void)moreBtnDidClick:(id)sender{
     
 //    self.myBlock(2);
+//    [_more setNeedsUpdateConstraints];
+//    [_more updateConstraintsIfNeeded];
+//    [UIButton animateWithDuration:0.3 animations:^{
+//        [_more layoutIfNeeded];
+//    }];
     if (_delegate && [_delegate respondsToSelector:@selector(moreBtnDidClick)]) {
         [_delegate moreBtnDidClick];
     }

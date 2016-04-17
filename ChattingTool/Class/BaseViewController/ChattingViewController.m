@@ -18,7 +18,8 @@
     NSInteger _temp;
 }
 
-@property (strong, nonatomic) UITextField *messageTextView;
+@property (strong,nonatomic) MessageTextView *msgTextView;
+@property (strong, nonatomic) UITextField *messageText;
 @property (strong, nonatomic) UITableView *tableView;
 
 //录音器
@@ -77,7 +78,7 @@
             } else {
                 NSLog(@"success to creating db table");
             }
-            NSString *text = _messageTextView.text;
+            NSString *text = _messageText.text;
             BOOL insert = [db executeUpdate:@"insert into ChatRecord (record) values(?)",text];
             if (insert) {
                 NSLog(@"插入数据成功");
@@ -110,10 +111,29 @@
 
 - (void)initTextView{
     
-    MessageTextView *msgText = [[MessageTextView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 80, SCREEN_WIDTH, 70)];
-    msgText.delegate = self;
-    [self.view addSubview:msgText];
+//    MessageTextView *msgText = [[MessageTextView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 80, SCREEN_WIDTH, 70)];
+//    MessageTextView *msgText = [[MessageTextView alloc] init];
+    _msgTextView = [[MessageTextView alloc] init];
+    _msgTextView.delegate = self;
+    [self.view addSubview:_msgTextView];
+    [_msgTextView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(SCREEN_HEIGHT - 80);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+            }];
+        
 }
+
+//- (void)updateViewConstraints {
+//    [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
+//        make.left.right.mas_equalTo(0);
+//        make.top.mas_equalTo(10);
+//        make.bottom.mas_equalTo(SCREEN_HEIGHT - 70);
+//    }];
+//    [super updateViewConstraints];
+//}
+
 - (void)initTableView{
     
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 88) style:UITableViewStylePlain];
@@ -150,6 +170,7 @@
     CGRect keyBoardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat deltaY = keyBoardRect.size.height;
     
+    _temp = deltaY;
     [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
         
         self.view.transform = CGAffineTransformMakeTranslation(0, -deltaY);
@@ -319,6 +340,11 @@
 - (void)moreBtnDidClick{
     NSLog(@"更多功能");
 //    [self viewDidAppear:YES];
+    [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(SCREEN_HEIGHT - _temp);
+        make.bottom.mas_equalTo(_temp);
+    }];
     
 }
 #pragma mark - Private
