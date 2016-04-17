@@ -337,7 +337,7 @@
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
 }
-- (void)moreBtnDidClick{
+- (void)moreBtnPressClick{
     NSLog(@"更多功能");
 //    [self viewDidAppear:YES];
     [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
@@ -346,6 +346,14 @@
         make.bottom.mas_equalTo(_temp);
     }];
     
+}
+- (void)moreBtnUppressClick{
+    [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(SCREEN_HEIGHT - 80);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
 }
 #pragma mark - Private
 - (CGFloat)cbearxl_estimatedRowHeightForMessage:(Message *)message {

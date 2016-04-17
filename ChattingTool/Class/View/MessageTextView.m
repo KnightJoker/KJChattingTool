@@ -65,6 +65,7 @@
     _more = [[UIButton alloc]initWithFrame:CGRectMake(360, 20, 40, 40)];
 //    _more = [[UIButton alloc] init];
     [_more setImage:[UIImage imageNamed:@"chat_bottom_more_nor@3x.png"] forState:UIControlStateNormal];
+    _more.tag = 1;
     
     [self addSubview:_voice];
     [self addSubview:_emotion];
@@ -158,8 +159,28 @@
 //    [UIButton animateWithDuration:0.3 animations:^{
 //        [_more layoutIfNeeded];
 //    }];
-    if (_delegate && [_delegate respondsToSelector:@selector(moreBtnDidClick)]) {
-        [_delegate moreBtnDidClick];
+    if (_more.tag == 1) {
+        
+        [_more setImage:[UIImage imageNamed:@"chat_bottom_more_press@3x.png"] forState:UIControlStateNormal];
+        [_more addTarget:self action:@selector(moreBtnPressClick:) forControlEvents:UIControlEventTouchUpInside];
+        _more.tag = 0;
+
+    }
+    else{
+        
+        [_more setImage:[UIImage imageNamed:@"chat_bottom_more_nor@3x.png"] forState:UIControlStateNormal];
+        [_more addTarget:self action:@selector(moreBtnUppressClick:) forControlEvents:UIControlEventTouchUpInside];
+        _more.tag = 1;
+    }
+}
+- (void)moreBtnPressClick:(id)sender{
+    if (_delegate && [_delegate respondsToSelector:@selector(moreBtnPressClick)]) {
+        [_delegate moreBtnPressClick];
+    }
+}
+- (void)moreBtnUppressClick:(id)sender{
+    if (_delegate && [_delegate respondsToSelector:@selector(moreBtnUppressClick)]) {
+        [_delegate moreBtnUppressClick];
     }
 }
 

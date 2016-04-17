@@ -23,7 +23,8 @@
 - (void)speakBtnDidClick;
 - (void)speakBtnUnpressClick;
 - (void)emotionBtnDidClick;
-- (void)moreBtnDidClick;
+- (void)moreBtnPressClick;
+- (void)moreBtnUppressClick;
 
 @end
 
