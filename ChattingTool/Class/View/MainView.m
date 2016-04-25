@@ -15,7 +15,6 @@
     
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"");
         [self initView];
     }
     return self;
@@ -23,28 +22,27 @@
 
 - (void)initView{
     self.backgroundColor = [UIColor whiteColor];
-    
-    //    NSLog(@"%f",SCREEN_HEIGHT);
-    //    NSLog(@"%f",SCREEN_WIDTH);
-    
-    UIButton* messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 380, SCREEN_HEIGHT - 80, 50, 50)];
-    
+
+    UIButton* messageBtn = [[UIButton alloc] init];
     [messageBtn setImage:[UIImage imageNamed:@"shortcut_multichat.png"] forState:UIControlStateNormal];
     
-    
-    UIButton* contactBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 240, SCREEN_HEIGHT - 80, 50, 50)];
-    
+     UIButton* contactBtn = [[UIButton alloc] init];
     [contactBtn setImage:[UIImage imageNamed:@"shortcut_addFri.png"] forState:UIControlStateNormal];
-    
-    
-    UIButton* dynamicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 80, 50, 50)];
-    
-    [dynamicBtn setImage:[UIImage imageNamed:@"favorite_classify_qzone@2x.png"] forState:UIControlStateNormal];
     
     [self addSubview:messageBtn];
     [self addSubview:contactBtn];
-    [self addSubview:dynamicBtn];
     
+    [messageBtn mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(SCREEN_HEIGHT - (SCREEN_HEIGHT / 8));
+        make.left.mas_equalTo(SCREEN_WIDTH / 8);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+    }];
+    
+    [contactBtn mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(messageBtn);
+        make.left.mas_equalTo(messageBtn).with.offset(SCREEN_WIDTH / 2);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+    }];
     [messageBtn addTarget:self action:@selector(messageBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     
 

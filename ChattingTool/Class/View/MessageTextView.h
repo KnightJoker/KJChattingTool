@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry.h>
 
 //
 ////定义block块变量类型，用于回调,把本View上的按钮的index传到Controller中

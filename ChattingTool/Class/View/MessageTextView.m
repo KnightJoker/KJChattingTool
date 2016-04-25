@@ -28,7 +28,6 @@
   
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"");
         [self initView];
     }
     return self;
@@ -42,7 +41,7 @@
 
 - (void)initTextView{
     
-    _messageTextView = [[UITextField alloc] initWithFrame:CGRectMake(53, 20, 250, 40)];
+    _messageTextView = [[UITextField alloc] init];
     _messageTextView.backgroundColor = [UIColor grayColor];
     _messageTextView.keyboardType = UIKeyboardTypeASCIICapable;
     _messageTextView.returnKeyType = UIReturnKeySend;
@@ -51,19 +50,23 @@
     
     [self addSubview:_messageTextView];
     
+    [_messageTextView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(20);
+        make.left.mas_equalTo(50);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH / 2 + SCREEN_WIDTH / 14, 40));
+    }];
 }
 
 
 - (void)initUI{
-    _voice = [[UIButton alloc]initWithFrame:CGRectMake(10, 20, 40, 40)];
+    _voice = [[UIButton alloc]init];
     [_voice setImage:[UIImage imageNamed:@"chat_bottom_PTT_nor@3x.png"] forState:UIControlStateNormal];
     _voice.tag = 1;
     
-    _emotion = [[UIButton alloc]initWithFrame:CGRectMake(310, 20, 40, 40)];
+    _emotion = [[UIButton alloc]init];
     [_emotion setImage:[UIImage imageNamed:@"chat_bottom_emotion_nor@3x.png"] forState:UIControlStateNormal];
     
-    _more = [[UIButton alloc]initWithFrame:CGRectMake(360, 20, 40, 40)];
-//    _more = [[UIButton alloc] init];
+    _more = [[UIButton alloc]init];
     [_more setImage:[UIImage imageNamed:@"chat_bottom_more_nor@3x.png"] forState:UIControlStateNormal];
     _more.tag = 1;
     
@@ -71,33 +74,33 @@
     [self addSubview:_emotion];
     [self addSubview:_more];
     
+    [_voice mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(20);
+        make.left.mas_equalTo(5);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+    }];
+    
+    [_emotion mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(20);
+//        make.left.mas_equalTo(_messageTextView).with.offset((SCREEN_WIDTH / 2 )+ 10);
+        make.right.mas_equalTo(_messageTextView).with.offset(50);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+    }];
+    
+    [_more mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(20);
+        make.left.mas_equalTo(_emotion).with.offset(30);
+        make.right.mas_equalTo(_emotion).with.offset(50);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+    }];
+    
     [_voice addTarget:self action:@selector(voiceBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [_emotion addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [_more addTarget:self action:@selector(moreBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    _more.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    //添加水平约束
-//    NSArray *buttonH = [NSLayoutConstraint constraintsWithVisualFormat:@
-//                        "H:|[_more]|"options:0 metrics:0 views:NSDictionaryOfVariableBindings(_more)];
-//    [self addConstraints:buttonH];
-//    
-//    NSArray *button2V = [NSLayoutConstraint constraintsWithVisualFormat:@
-//                         "V:|[_more]|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_more)];
-//    [self addConstraints:button2V];
-//    [_more mas_makeConstraints:^(MASConstraintMaker *make){
-//        make.top.mas_equalTo(25);
-//        make.left.mas_equalTo(360);
-//    }];
+
     
 }
 
-//- (void)updateConstraints{
-//    [_more mas_remakeConstraints:^(MASConstraintMaker *make){
-//        make.top.mas_equalTo(0);
-//        make.left.mas_equalTo(0);
-//    }];
-//}
 - (void)initGesture{
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     tapGestureRecognizer.cancelsTouchesInView = NO;
@@ -116,9 +119,14 @@
         [_voice setImage:[UIImage imageNamed:@"chat_bottom_PTT_press@3x.png"] forState:UIControlStateNormal];
         _voice.tag = 0;
         
-        UIButton *speak = [[UIButton alloc] initWithFrame:CGRectMake(53, 20, 250, 40)];
+        UIButton *speak = [[UIButton alloc] init];
         [speak setTitle:@"按住 说话" forState:UIControlStateNormal];
         [self addSubview:speak];
+        [speak mas_makeConstraints:^(MASConstraintMaker *make){
+            make.top.mas_equalTo(20);
+            make.left.mas_equalTo(50);
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH / 2 + SCREEN_WIDTH / 14, 40));
+        }];
         [speak addTarget:self action:@selector(speakBtnDidClick:) forControlEvents:UIControlEventTouchDown];
         [speak addTarget:self action:@selector(speakBtnUnpressClick:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         
@@ -153,12 +161,7 @@
 //更多按钮
 - (void)moreBtnDidClick:(id)sender{
     
-//    self.myBlock(2);
-//    [_more setNeedsUpdateConstraints];
-//    [_more updateConstraintsIfNeeded];
-//    [UIButton animateWithDuration:0.3 animations:^{
-//        [_more layoutIfNeeded];
-//    }];
+
     if (_more.tag == 1) {
         if (_delegate && [_delegate respondsToSelector:@selector(moreBtnDidClick)]) {
             [_delegate moreBtnDidClick];
@@ -182,10 +185,6 @@
     }
 }
 
-//-(void) setToolIndex:(ToolIndex)toolBlock
-//{
-//    self.myBlock = toolBlock;
-//}
 
 #pragma mark - UITextFieldDelegate方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

@@ -111,8 +111,6 @@
 
 - (void)initTextView{
     
-//    MessageTextView *msgText = [[MessageTextView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 80, SCREEN_WIDTH, 70)];
-//    MessageTextView *msgText = [[MessageTextView alloc] init];
     _msgTextView = [[MessageTextView alloc] init];
     _msgTextView.delegate = self;
     [self.view addSubview:_msgTextView];
@@ -125,14 +123,6 @@
         
 }
 
-//- (void)updateViewConstraints {
-//    [_msgTextView mas_remakeConstraints:^(MASConstraintMaker *make){
-//        make.left.right.mas_equalTo(0);
-//        make.top.mas_equalTo(10);
-//        make.bottom.mas_equalTo(SCREEN_HEIGHT - 70);
-//    }];
-//    [super updateViewConstraints];
-//}
 
 - (void)initTableView{
     
