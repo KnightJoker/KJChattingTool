@@ -15,7 +15,7 @@
 
 @class MessageTextView;
 
-@protocol MessageTextDelegate <NSObject>
+@protocol MessageTextViewDelegate <NSObject>
 
 - (void)textView:(MessageTextView *)messageText textFieldDidBeginEditing:(UITextField *)textField;
 - (void)textView:(MessageTextView *)messageText textFieldDidEndEditing:(UITextField *)textField;
@@ -31,7 +31,7 @@
 
 @interface MessageTextView : UIView <UITextFieldDelegate>
 
-@property (nonatomic,assign)id <MessageTextDelegate> delegate;
+@property (nonatomic,assign)id <MessageTextViewDelegate> delegate;
 
 ////块变量类型的setter方法
 //-(void)setToolIndex:(ToolIndex) toolBlock;

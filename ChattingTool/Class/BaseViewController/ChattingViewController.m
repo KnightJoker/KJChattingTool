@@ -14,7 +14,7 @@
 #import "FMDB.h"
 #import "MessageTextView.h"
 
-@interface ChattingViewController () <MessageCellDelegate,MessageTextDelegate>{
+@interface ChattingViewController () <MessageCellDelegate,MessageTextViewDelegate>{
     NSInteger _temp;
 }
 
@@ -326,6 +326,19 @@
 }
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
+    NSError *playerError;
+    
+    //播放
+    _player = nil;
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:_playName] error:&playerError];
+    
+    if (_player == nil)
+    {
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }else{
+        [_player play];
+    }
+    NSLog(@"DHOSDHA");
 }
 - (void)moreBtnDidClick{
     NSLog(@"更多功能");
