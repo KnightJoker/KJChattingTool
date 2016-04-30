@@ -192,6 +192,7 @@
 {
     MessageCell *cell = [MessageCell cellWithTableView:tableView];
     cell.message = self.messageList[indexPath.row];
+    cell.delegate = self;
     
     return cell;
 }
@@ -321,24 +322,12 @@
     //重新加载数据
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageList.count - 1 inSection:0];
     //滚动显示最后一条数据
+    
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 - (void)emotionBtnDidClick{
     NSLog(@"表情聊天");
-    NSError *playerError;
-    
-    //播放
-    _player = nil;
-    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:_playName] error:&playerError];
-    
-    if (_player == nil)
-    {
-        NSLog(@"ERror creating player: %@", [playerError description]);
-    }else{
-        [_player play];
-    }
-    NSLog(@"DHOSDHA");
 }
 - (void)moreBtnDidClick{
     NSLog(@"更多功能");
